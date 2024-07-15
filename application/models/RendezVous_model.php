@@ -55,5 +55,4 @@ class RendezVous_model extends CI_Model {
 
 
 
-
 }

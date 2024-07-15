@@ -62,5 +62,16 @@ $route['BackOffice/services/list'] = 'Back_office_service/services_list';
 $route['BackOffice/services/save'] = 'Back_office_service/save';
 $route['BackOffice/services/delete/(:any)'] = 'Back_office_service/services_delete/$1';
 
+
+$route['BackOffice/quotation/list'] = 'Back_office_quotation/RendezVous_model_list';
+
+
+
+/// Front office
+$route['FrontOffice/quotation/pdf'] = 'Front_office_devis/generate_service_receipt';
+
+
+
+
 $route['BackOffice/appointments/calendar'] = 'Back_office_rendez_vous/fetch_appointments';
 $route['BackOffice/quotation/list'] = 'Back_office_quotation/RendezVous_model_list';
