@@ -19,5 +19,5 @@ application/logs/*
 !application/logs/.htaccess
 /vendor/
 
-# Database config
 application/config/database.php
+.idea/
