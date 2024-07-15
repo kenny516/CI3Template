@@ -41,7 +41,7 @@
                                     <p class="text-center small">Entrer vos identifiants pour vous connecter</p>
                                 </div>
 
-                                <?= form_open('backoffice/verify_login',
+                                <?= form_open('',
                                     array(
                                         'class' => 'row g-3',
                                         'method' => 'post'
@@ -53,8 +53,7 @@
                                         'name' => 'email',
                                         'class' => 'form-control',
                                         'id' => 'email',
-                                        'required' => 'required',
-                                        'value' =>'admin@gmail.com'
+                                        'required' => 'required'
                                     )); ?>
                                     <div class="invalid-feedback">
                                         Entrer un email valide
@@ -66,8 +65,7 @@
                                         'name' => 'password',
                                         'class' => 'form-control',
                                         'id' => 'password',
-                                        'required' => 'required',
-                                        'value' =>'admin123'
+                                        'required' => 'required'
                                     )); ?>
                                     <div class="invalid-feedback">
                                         Veuillez entrer votre mot de passe !
@@ -80,15 +78,13 @@
                                         'class' => 'btn btn-primary w-100 fw-bold p-2'
                                     )); ?>
                                 </div>
-                                <?php if (!empty($error_message)) : ?>
-                                    <div class="col-12">
-                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                            <i class="bi bi-exclamation-octagon me-1"></i>
-                                            <?= $error_message ?>
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                        </div>
+
+                                <div class="col-12">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <i class="bi bi-exclamation-octagon me-1"></i>
+                                        Erreur
                                     </div>
-                                <?php endif; ?>
+                                </div>
                                 <?= form_close(); ?>
                             </div>
                         </div>
