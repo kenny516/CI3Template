@@ -8,7 +8,8 @@ class BackOffice extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-      //  $this->load->model('Admin_model');
+        $this->load->model('Admin_model');
+        $this->load->model('RendezVous_model');
         $this->load->helper('form');
     }
 
@@ -37,7 +38,7 @@ class BackOffice extends CI_Controller
         $data['title'] = 'Devis';
         $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
     }
- 
+
     public function add_admin()
     {
         $email = 'admin@gmail.com';
@@ -59,8 +60,8 @@ class BackOffice extends CI_Controller
             $admin = $this->Admin_model->login($email, $password);
             if ($admin) {
                 $session_data = array(
-                    'email' => $email,
-                    'logged_in' => TRUE
+                    'id_admin' => $admin['id_admin'],
+                    'email' => $email
                 );
                 $this->session->set_userdata("user",$session_data);
                 redirect('BackOffice/services/list');
@@ -69,5 +70,11 @@ class BackOffice extends CI_Controller
                 redirect('BackOffice/login');
             }
         }
+    }
+
+    public function logout()
+    {
+        $this->session->unset_userdata('user');
+        redirect('BackOffice/login');
     }
 }
