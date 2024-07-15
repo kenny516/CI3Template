@@ -6,7 +6,7 @@
                     <h5 class="card-title">Liste</h5>
                     <a type="button" href="#" class="btn btn-primary">
                         Ajouter
-                        <i class="bi bi-plus-circle"></i>
+                        <i class="ms-1 bi bi-plus-circle"></i>
                     </a>
                 </div>
                 <table class="table">
