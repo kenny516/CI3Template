@@ -19,7 +19,7 @@ VALUES ('123ABC', 1),
        ('654MNO', 2);
 
 -- Services
-INSERT INTO garage_auto_services (nom, duree, prix)
+INSERT INTO garage_auto_service (nom, duree, prix)
 VALUES ('Réparation simple', '01:00:00', 150000),
        ('Réparation standard', '02:00:00', 250000),
        ('Réparation complexe', '08:00:00', 800000),
