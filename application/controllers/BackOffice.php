@@ -9,11 +9,19 @@ class BackOffice extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Admin_model');
+        $this->load->model('RendezVous_model');
         $this->load->helper('form');
     }
 
     public function login()
     {
+        $this->RendezVous_model->insert(array(
+            'id_voiture' => 1,
+            'id_service' => 3,
+            'id_slot' => 3,
+            'date_debut' => '2023-03-01 13:00:00',
+            'date_paiement' => null
+        ));
         $this->load->view(self::VIEW_FOLDER . 'login');
     }
 

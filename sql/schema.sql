@@ -59,9 +59,9 @@ CREATE TABLE garage_auto_rendez_vous
 CREATE TABLE garage_auto_details_rendez_vous
 (
     id_details_rendez_vous INT PRIMARY KEY AUTO_INCREMENT,
-    date_details DATE NOT NULL,
-    heure_debut TIME NOT NULL,
-    heure_fin DATETIME NOT NULL,
-    id_rendez_vous INT NOT NULL,
-    FOREIGN KEY (id_rendez_vous) REFERENCES garage_auto_rendez_vous(id_rendez_vous)
+    date_details           DATE     NOT NULL,
+    heure_debut            TIME     NOT NULL,
+    heure_fin              TIME NOT NULL,
+    id_rendez_vous         INT      NOT NULL,
+    FOREIGN KEY (id_rendez_vous) REFERENCES garage_auto_rendez_vous (id_rendez_vous)
 );
