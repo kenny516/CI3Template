@@ -11,12 +11,16 @@ class Back_office_service extends \CI_Controller
         $this->load->model('Service_model');
     }
 
-    public function services_form($data) {
+
+    // redirection
+    public function services_form($id = null) {
         $data['content'] = self::VIEW_FOLDER . 'services/form';
         $data['title'] = 'Services';
-        $data['data'] = $data;
+        $data['data'] = $this->Service_model->get_by_id($id);
         $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
     }
+    // crud
+
     public function services_list() {
         $data['content'] = self::VIEW_FOLDER . 'services/list';
         $data['title'] = 'Services';
@@ -24,10 +28,38 @@ class Back_office_service extends \CI_Controller
 
         $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
     }
+    // Enregistre un nouveau service ou met à jour un service existant
+    public function save()
+    {
+        $id_service = $this->input->post('id_service');
+        $data = [
+            'nom' => $this->input->post('nom'),
+            'duree' => $this->input->post('duree'),
+            'prix' => $this->input->post('prix')
+        ];
+
+        if ($id_service) {
+            // Mise à jour du service existant
+            $this->Service_model->update($id_service, $data);
+        } else {
+            // Création d'un nouveau service
+            $this->Service_model->insert($data);
+        }
+
+        // Redirection vers la liste des services après l'opération
+        $this->services_list();
+    }
+
+
     public function services_delete($id)
     {
-        $this->Service_model->delete($id);
-        $this->services_list();
+        $affected_rows = $this->Service_model->delete($id);
+        if ($affected_rows){
+            $this->services_list();
+        }else{
+            echo "cet element est relier a d autre";
+        }
+
     }
 
 

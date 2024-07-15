@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Formulaire</h5>
-                <?= form_open('', ['method' => 'post']); ?>
+                <?= form_open('BackOffice/services/save', ['method' => 'post']); ?>
                 <?= form_input([
                     'name' => 'type',
                     'id' => 'type',

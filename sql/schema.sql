@@ -55,3 +55,12 @@ CREATE TABLE garage_auto_rendez_vous
     FOREIGN KEY (id_service) REFERENCES garage_auto_service (id_service),
     FOREIGN KEY (id_slot) REFERENCES garage_auto_slot (id_slot)
 );
+
+ALTER TABLE garage_auto_rendez_vous
+    DROP FOREIGN KEY garage_auto_rendez_vous_ibfk_2;
+
+ALTER TABLE garage_auto_rendez_vous
+    ADD CONSTRAINT garage_auto_rendez_vous_ibfk_2
+        FOREIGN KEY (id_service) REFERENCES garage_auto_service(id_service)
+            ON DELETE CASCADE;
+
