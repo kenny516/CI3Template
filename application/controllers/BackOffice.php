@@ -38,6 +38,13 @@ class BackOffice extends CI_Controller
         $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
     }
 
+    public function appointment()
+    {
+        $data['content'] = self::VIEW_FOLDER . 'appointment';
+        $data['title'] = 'Rendez-vous';
+        $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
+    }
+  
     public function add_admin()
     {
         $email = 'admin@gmail.com';
