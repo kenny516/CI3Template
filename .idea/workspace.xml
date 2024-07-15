@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dff7732a-3ac5-4bc6-9dc6-799726e1dd48" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/application/models/RendezVous_model.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/models/Service_model.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/models/Slot_model.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/data.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sql/schena.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/schena.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,8 +38,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "models",
-    "last_opened_file_path": "C:/laragon/www/Garage-automobile/application/config",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/xampp/htdocs/Garage-automobile/application/views/pages",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -61,7 +59,6 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\laragon\www\Garage-automobile\application\config" />
       <recent name="D:\xampp\htdocs\Garage-automobile\application\views\pages" />
       <recent name="D:\xampp\htdocs\Garage-automobile\application\config" />
     </key>
