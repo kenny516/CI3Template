@@ -41,7 +41,7 @@
                                     <p class="text-center small">Entrer vos identifiants pour vous connecter</p>
                                 </div>
 
-                                <?= form_open('',
+                                <?= form_open('backoffice/verify_login',
                                     array(
                                         'class' => 'row g-3',
                                         'method' => 'post'
@@ -53,7 +53,8 @@
                                         'name' => 'email',
                                         'class' => 'form-control',
                                         'id' => 'email',
-                                        'required' => 'required'
+                                        'required' => 'required',
+                                        'value' =>'admin@gmail.com'
                                     )); ?>
                                     <div class="invalid-feedback">
                                         Entrer un email valide
@@ -65,7 +66,8 @@
                                         'name' => 'password',
                                         'class' => 'form-control',
                                         'id' => 'password',
-                                        'required' => 'required'
+                                        'required' => 'required',
+                                        'value' =>'admin123'
                                     )); ?>
                                     <div class="invalid-feedback">
                                         Veuillez entrer votre mot de passe !
@@ -79,12 +81,18 @@
                                     )); ?>
                                 </div>
 
-                                <div class="col-12">
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <i class="bi bi-exclamation-octagon me-1"></i>
-                                        Erreur
+                                <?php
+                                $error_message = $this->session->flashdata('error');
+                                ?>
+                                <?php if (!empty($error_message)) : ?>
+                                    <div class="col-12">
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <i class="bi bi-exclamation-octagon me-1"></i>
+                                            <?= $error_message ?>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
                                     </div>
-                                </div>
+                                <?php endif; ?>
                                 <?= form_close(); ?>
                             </div>
                         </div>
