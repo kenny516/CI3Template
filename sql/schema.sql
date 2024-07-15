@@ -34,7 +34,7 @@ CREATE TABLE garage_auto_service
     id_service INT PRIMARY KEY AUTO_INCREMENT,
     nom        VARCHAR(50) NOT NULL,
     duree      TIME        NOT NULL,
-    prix       INT         NOT NULL
+    prix       DOUBLE         NOT NULL
 );
 
 CREATE TABLE garage_auto_slot

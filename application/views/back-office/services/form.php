@@ -11,9 +11,11 @@
                             'name' => 'nom',
                             'id' => 'nom',
                             'class' => 'form-control',
-                            'type' => 'text'
+                            'type' => 'text',
+                            'value' => isset($data['nom']) ? $data['nom'] : ''
                         ]); ?>
                     </div>
+
                 </div>
                 <div class="row mb-3">
                     <label for="duree" class="col-sm-2 col-form-label">Durée</label>
@@ -22,7 +24,8 @@
                             'name' => 'duree',
                             'id' => 'duree',
                             'class' => 'form-control',
-                            'type' => 'time'
+                            'type' => 'time',
+                            'value' => isset($data['duree']) ? $data['duree'] : ''
                         ]); ?>
                     </div>
                 </div>
@@ -33,7 +36,8 @@
                             'name' => 'prix',
                             'id' => 'prix',
                             'class' => 'form-control',
-                            'type' => 'text'
+                            'type' => 'text',
+                            'value' => isset($data['prix']) ? $data['prix'] : ''
                         ]); ?>
                     </div>
                 </div>
