@@ -29,12 +29,12 @@
     <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet">
 </head>
 
-<body>
+<body class="d-flex flex-column">
 <?php $this->load->view('back-office/header.php'); ?>
 
 <?php $this->load->view('back-office/sidebar.php'); ?>
 
-<main id="main" class="main">
+<main id="main" class="main flex-grow-1">
     <div class="pagetitle mb-3">
         <h1><?= $title ?></h1>
     </div>
