@@ -4,9 +4,9 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                     <h5 class="card-title">Liste</h5>
-                    <a type="button" href="#" class="btn btn-primary">
                         Ajouter
-                        <i class="ms-1 bi bi-plus-circle"></i>
+                    <a type="button" href="<?= site_url('BackOffice/services/form') ?>" class="btn btn-primary">
+                    <i class="ms-1 bi bi-plus-circle"></i>
                     </a>
                 </div>
                 <table class="table">
@@ -22,13 +22,13 @@
                     <tbody>
                     <?php foreach ($services as $service): ?>
                         <tr>
-                            <td><?= $service['id'] ?></td>
+                            <td><?= $service['id_service'] ?></td>
                             <td><?= $service['nom'] ?></td>
                             <td><?= $service['duree'] ?></td>
                             <td><?= $service['prix'] ?></td>
                             <td class="d-flex justify-content-evenly">
-                                <button type="button" class="btn btn-dark"><i class="bi bi-pencil-fill"></i></button>
-                                <button type="button" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
+                                <a href="<?= site_url('BackOffice/services/form/' . $service['id_service']) ?>" type="button" class="btn btn-dark" ><i class="bi bi-pencil-fill"></i></a>
+                                <a href="<?= site_url('BackOffice/services/delete/' . $service['id_service']) ?>" type="button" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

@@ -40,7 +40,6 @@ class Admin_model extends CI_Model {
         if ($admin && password_verify($password, $admin['mots_de_passe'])) {
             return $admin;
         }
-
         return false;
     }
 }
