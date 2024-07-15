@@ -37,7 +37,7 @@
     </div>
 </div>
 
-<script src="<?= base_url('assets/js/index.global.min.js'); ?>"></script>
+<script src="<?= base_url('assets/js/fullcalendar.min.js'); ?>"></script>
 <script>
     let calendar;
     const calendarElement = document.getElementById('calendar');
