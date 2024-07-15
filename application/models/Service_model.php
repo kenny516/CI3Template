@@ -30,9 +30,28 @@ class Service_model extends CI_Model {
 
     // Delete
     public function delete($id_service) {
-        $this->db->where('id_service', $id_service);
-        $this->db->delete('garage_auto_service');
-        return $this->db->affected_rows();
+        try {
+            $this->db->trans_start(); // Démarre une transaction
+
+            // Suppression du service
+            $this->db->where('id_service', $id_service);
+            $this->db->delete('garage_auto_service');
+
+            // Vérifie le nombre de lignes affectées
+            $affected_rows = $this->db->affected_rows();
+
+            if ($affected_rows == 0) {
+                throw new Exception("Le service avec l'ID $id_service n'existe pas.");
+            }
+
+            $this->db->trans_complete(); // Termine la transaction
+
+            return $affected_rows;
+        } catch (Exception $e) {
+            // En cas d'erreur, annule la transaction et renvoie une erreur
+            $this->db->trans_rollback();
+            return false;
+        }
     }
 
     public function get_duree_service($id_service)

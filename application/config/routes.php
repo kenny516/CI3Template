@@ -54,5 +54,11 @@ $route['default_controller'] = 'pages/view';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['BackOffice/services/list'] = 'BackOffice/services_list';
-$route['BackOffice/services/form'] = 'BackOffice/services_form';
+
+$route['BackOffice/services/form/(:any)'] = 'Back_office_service/services_form/$1';
+
+$route['BackOffice/services/list'] = 'Back_office_service/services_list';
+$route['BackOffice/services/save'] = 'Back_office_service/save';
+$route['BackOffice/services/delete/(:any)'] = 'Back_office_service/services_delete/$1';
+
+
