@@ -64,3 +64,11 @@ $route['BackOffice/services/delete/(:any)'] = 'Back_office_service/services_dele
 
 
 $route['BackOffice/quotation/list'] = 'Back_office_quotation/RendezVous_model_list';
+
+
+
+/// Front office
+$route['FrontOffice/quotation/pdf'] = 'Front_office_devis/generate_service_receipt';
+
+
+
