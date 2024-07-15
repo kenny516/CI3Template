@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div>
-                    <?= form_submit('submit', 'Soumettre', ['class' => 'btn btn-primary px-4']); ?>
+                    <?= form_submit('submit', 'Soumettre', ['class' => 'btn btn-primary px-4 fw-bold']); ?>
                 </div>
                 <?= form_close(); ?>
             </div>

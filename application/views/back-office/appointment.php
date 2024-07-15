@@ -9,28 +9,28 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Ajouter un rendez-vous</h5>
+                <h5 class="modal-title fw-bold">Ajouter un rendez-vous</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="appointmentForm">
                     <div class="mb-3">
-                        <label for="voiture" class="form-label">Voitures</label>
+                        <label for="voiture" class="form-label small">Voitures</label>
                         <select id="voiture" name="voiture" class="form-select">
                             <option>Jean marc 12 chevaux</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="service" class="form-label">Types de services</label>
+                        <label for="service" class="form-label small">Types de services</label>
                         <select id="service" name="service" class="form-select">
                             <option>Service 1</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="date-debut" class="form-label">Date de début</label>
+                        <label for="date-debut" class="form-label small">Date de début</label>
                         <input type="datetime-local" class="form-control" id="date-debut" name="date-debut">
                     </div>
-                    <button type="submit" class="btn btn-primary">Confirmer</button>
+                    <button type="submit" class="btn btn-primary fw-bold">Confirmer</button>
                 </form>
             </div>
         </div>

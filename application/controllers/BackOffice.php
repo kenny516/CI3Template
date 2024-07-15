@@ -44,6 +44,13 @@ class BackOffice extends CI_Controller
         $data['title'] = 'Rendez-vous';
         $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
     }
+
+    public function devis()
+    {
+        $data['content'] = self::VIEW_FOLDER . 'quotation';
+        $data['title'] = 'Devis';
+        $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
+    }
   
     public function add_admin()
     {
