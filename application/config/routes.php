@@ -55,4 +55,4 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['BackOffice/services/list'] = 'BackOffice/services_list';
-$route['BackOffice/services/form'] = 'BackOffice/services_form';
+$route['BackOffice/services/form/(:any)'] = 'BackOffice/services_form/$1';

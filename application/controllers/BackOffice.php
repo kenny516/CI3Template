@@ -31,7 +31,6 @@ class BackOffice extends CI_Controller
 
         $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
     }
-
     public function services_delete($id)
     {
         $this->Service_model->delete($id);

@@ -32,7 +32,7 @@
                                         <i class="bi bi-three-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Modifier</a></li>
+                                        <li><a class="dropdown-item" href="<?= site_url('BackOffice/services/form/' . $service) ?>">Modifier</a></li>
                                         <li><a class="dropdown-item" href="#">Supprimer</a></li>
                                     </ul>
                                 </div>
