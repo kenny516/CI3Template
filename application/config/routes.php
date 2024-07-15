@@ -72,3 +72,6 @@ $route['FrontOffice/quotation/pdf'] = 'Front_office_devis/generate_service_recei
 
 
 
+
+$route['BackOffice/appointments/calendar'] = 'Back_office_rendez_vous/fetch_appointments';
+$route['BackOffice/quotation/list'] = 'Back_office_quotation/RendezVous_model_list';
