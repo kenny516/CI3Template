@@ -31,7 +31,7 @@ CREATE TABLE garage_auto_voiture
     FOREIGN KEY (id_type_voiture) REFERENCES garage_auto_type_voiture (id_type_voiture)
 );
 
-CREATE TABLE garage_auto_services
+CREATE TABLE garage_auto_service
 (
     id_service INT PRIMARY KEY AUTO_INCREMENT,
     nom        VARCHAR(50) NOT NULL,
@@ -54,6 +54,6 @@ CREATE TABLE garage_auto_rendez_vous
     date_debut    DATETIME NOT NULL,
     date_paiement DATE,
     FOREIGN KEY (id_voiture) REFERENCES garage_auto_voiture (id_voiture),
-    FOREIGN KEY (id_service) REFERENCES garage_auto_services (id_service),
+    FOREIGN KEY (id_service) REFERENCES garage_auto_service (id_service),
     FOREIGN KEY (id_slot) REFERENCES garage_auto_slot (id_slot)
 );
