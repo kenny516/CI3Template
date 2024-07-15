@@ -9,7 +9,6 @@ class RendezVous_model extends CI_Model {
         $this->load->model('Service_model');
         $this->load->model('Ouverture_model');
         $this->load->model('DetailsRendezVous_model');
-        date_default_timezone_set('Europe/Paris'); // Set the timezone here
     }
 
     /**
