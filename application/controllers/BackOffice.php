@@ -8,7 +8,7 @@ class BackOffice extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Admin_model');
+      //  $this->load->model('Admin_model');
         $this->load->helper('form');
     }
 
@@ -17,8 +17,27 @@ class BackOffice extends CI_Controller
         $this->load->view(self::VIEW_FOLDER . 'login');
     }
 
+    public function services_form()
+    {
+        $data['content'] = self::VIEW_FOLDER . 'services/form';
+        $data['title'] = 'Services';
+        $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
+    }
 
+    public function appointment()
+    {
+        $data['content'] = self::VIEW_FOLDER . 'appointment';
+        $data['title'] = 'Rendez-vous';
+        $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
+    }
 
+    public function devis()
+    {
+        $data['content'] = self::VIEW_FOLDER . 'quotation';
+        $data['title'] = 'Devis';
+        $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
+    }
+ 
     public function add_admin()
     {
         $email = 'admin@gmail.com';
