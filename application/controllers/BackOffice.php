@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class BackOffice extends CI_Controller
 {
+    const VIEW_FOLDER = 'back-office/';
 
     public function __construct()
     {
@@ -10,8 +11,13 @@ class BackOffice extends CI_Controller
         $this->load->helper('form');
     }
 
+    public function login()
+    {
+        $this->load->view(self::VIEW_FOLDER . 'login');
+    }
+
     public function index()
     {
-        $this->load->view('back-office/login');
+        $this->load->view(self::VIEW_FOLDER . 'base_layout');
     }
 }
