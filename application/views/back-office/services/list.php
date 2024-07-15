@@ -6,7 +6,7 @@
                     <h5 class="card-title">Liste</h5>
                     <a type="button" href="#" class="btn btn-primary">
                         Ajouter
-                        <i class="bi bi-plus-lg"></i>
+                        <i class="bi bi-plus-circle"></i>
                     </a>
                 </div>
                 <table class="table">
@@ -28,7 +28,7 @@
                             <td><?= $service['prix'] ?></td>
                             <td>
                                 <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="bi bi-three-dots-vertical"></i>
                                     </button>
                                     <ul class="dropdown-menu">
