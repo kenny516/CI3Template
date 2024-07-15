@@ -19,3 +19,4 @@ application/logs/*
 
 application/config/database.php
 .idea/
+assets/vendor/*
