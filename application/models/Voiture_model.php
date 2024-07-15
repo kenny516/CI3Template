@@ -8,7 +8,7 @@ class Voiture_model extends CI_Model {
         $this->load->database();
     }
 
-    public function insert_voiture($data) {
+    public function insert($data) {
         return $this->db->insert('garage_auto_voiture', $data);
     }
 

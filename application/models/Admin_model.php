@@ -9,12 +9,12 @@ class Admin_model extends CI_Model {
     }
 
 
-    public function insert_admin($data) {
+    public function insert($data) {
         return $this->db->insert('garage_auto_admin', $data);
     }
 
 
-    public function get_admin_by_email($email) {
+    public function get_by_email($email) {
         $this->db->where('email', $email);
         $query = $this->db->get('garage_auto_admin');
         return $query->row_array();
@@ -26,7 +26,7 @@ class Admin_model extends CI_Model {
         return $this->db->update('garage_auto_admin', ['mots_de_passe' => $new_password]);
     }
 
-    public function delete_admin($id_admin) {
+    public function delete($id_admin) {
         $this->db->where('id_admin', $id_admin);
         return $this->db->delete('garage_auto_admin');
     }
