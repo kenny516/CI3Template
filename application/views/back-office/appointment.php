@@ -1,7 +1,6 @@
 <style>
     #calendar td.fc-day:hover {
         cursor: pointer;
-        background-color: #ccf3cc;
     }
 </style>
 
