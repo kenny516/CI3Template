@@ -1,20 +1,18 @@
 # CREATE DATABASE garage_auto;
-#
 # USE garage_auto;
 
-
-CREATE TABLE garage_auto_admin(
-    id_admin INT PRIMARY KEY AUTO_INCREMENT,
-    email VARCHAR(255),
+CREATE TABLE garage_auto_admin
+(
+    id_admin      INT PRIMARY KEY AUTO_INCREMENT,
+    email         VARCHAR(255),
     mots_de_passe VARCHAR(255)
 );
-
 
 CREATE TABLE garage_auto_ouverture
 (
     id_ouverture INT PRIMARY KEY AUTO_INCREMENT,
-    ouvert SMALLINT,
-    fermer SMALLINT
+    ouvert       SMALLINT,
+    fermer       SMALLINT
 );
 
 CREATE TABLE garage_auto_type_voiture
@@ -41,14 +39,14 @@ CREATE TABLE garage_auto_service
 
 CREATE TABLE garage_auto_slot
 (
-    id_slot  INT PRIMARY KEY AUTO_INCREMENT,
+    id_slot     INT PRIMARY KEY AUTO_INCREMENT,
     designation VARCHAR(50)
 );
 
 CREATE TABLE garage_auto_rendez_vous
 (
     id            INT PRIMARY KEY AUTO_INCREMENT,
-    id_voiture     INT,
+    id_voiture    INT,
     id_service    INT,
     id_slot       INT,
     date_debut    DATETIME NOT NULL,

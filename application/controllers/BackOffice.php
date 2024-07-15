@@ -16,8 +16,16 @@ class BackOffice extends CI_Controller
         $this->load->view(self::VIEW_FOLDER . 'login');
     }
 
-    public function index()
-    {
-        $this->load->view(self::VIEW_FOLDER . 'base_layout');
+    public function services_list() {
+        $data['content'] = self::VIEW_FOLDER . 'services/list';
+
+        $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
+    }
+
+    public function services_form() {
+        $data['content'] = self::VIEW_FOLDER . 'services/form';
+        $data['title'] = 'Services';
+
+        $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
     }
 }
