@@ -15,7 +15,6 @@ class BackOffice extends CI_Controller
     public function login()
     {
         $this->load->view(self::VIEW_FOLDER . 'login');
-
     }
 
     public function index()
@@ -36,7 +35,6 @@ class BackOffice extends CI_Controller
             'mots_de_passe' => $hashed_password
         );
         $this->Admin_model->insert($data);
-
     }
 
     public function verify_login()
@@ -46,17 +44,17 @@ class BackOffice extends CI_Controller
             $password = $this->input->post('password');
 
             $admin = $this->Admin_model->login($email, $password);
-            if ($admin)  {
+            if ($admin) {
                 $session_data = array(
                     'email' => $email,
                     'logged_in' => TRUE
                 );
-                $this->session->set_userdata($session_data);
+                $this->session->set_userdata("user",$session_data);
+
             } else {
-                $this->session->flashdata("error","identifiant incorrrect");
+                $this->session->set_flashdata('error', 'Identifiant incorrect');
             }
             redirect('backoffice/index');
         }
     }
-
 }

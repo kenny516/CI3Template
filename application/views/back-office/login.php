@@ -82,6 +82,7 @@
                                 </div>
 
                                 <?php
+                                var_dump($this->session->userdata("user"));
                                 $error_message = $this->session->flashdata('error');
                                 ?>
                                 <?php if (!empty($error_message)) : ?>
