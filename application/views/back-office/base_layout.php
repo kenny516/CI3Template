@@ -39,7 +39,9 @@
         <h1><?= $title ?></h1>
     </div>
 
-    <?php $this->load->view($content); ?>
+    <section class="section">
+        <?php $this->load->view($content); ?>
+    </section>
 </main>
 
 <?php $this->load->view('back-office/footer.php'); ?>

@@ -18,6 +18,13 @@ class BackOffice extends CI_Controller
 
     public function services_list() {
         $data['content'] = self::VIEW_FOLDER . 'services/list';
+        $data['title'] = 'Services';
+        $data['services'] = [
+            ['id' => 1, 'nom' => 'Réparation simple', 'duree' => '1h', 'prix' => '150000 Ar'],
+            ['id' => 2, 'nom' => 'Réparation standard', 'duree' => '2h', 'prix' => '250000 Ar'],
+            ['id' => 3, 'nom' => 'Réparation complexe', 'duree' => '8h', 'prix' => '800000 Ar'],
+            ['id' => 4, 'nom' => 'Entretien', 'duree' => '2h30', 'prix' => '300000 Ar']
+        ];
 
         $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
     }
