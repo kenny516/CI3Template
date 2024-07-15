@@ -1,80 +1,93 @@
-<script src='<?= base_url('assets/js/index.global.min.js'); ?>'></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
+<style>
+    #calendar td.fc-day:hover {
+        cursor: pointer;
+        background-color: #ccf3cc;
+    }
+</style>
 
-        var calendar = new FullCalendar.Calendar(calendarEl, {
+<div id="calendar"></div>
+<div class="modal fade" id="appointmentModal" tabindex="-1" aria-labelledby="appointmentModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ajouter un rendez-vous</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="appointmentForm">
+                    <div class="mb-3">
+                        <label for="voiture" class="form-label">Voitures</label>
+                        <select id="voiture" name="voiture" class="form-select">
+                            <option>Jean marc 12 chevaux</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="service" class="form-label">Types de services</label>
+                        <select id="service" name="service" class="form-select">
+                            <option>Service 1</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date-debut" class="form-label">Date de début</label>
+                        <input type="datetime-local" class="form-control" id="date-debut" name="date-debut">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Confirmer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="<?= base_url('assets/js/index.global.min.js'); ?>"></script>
+<script>
+    let calendar;
+    const calendarElement = document.getElementById('calendar');
+    const appointmentModalElement = document.getElementById('appointmentModal');
+
+    document.addEventListener('DOMContentLoaded', function() {
+        calendar = new FullCalendar.Calendar(calendarElement, {
             initialDate: '2023-01-12',
-            initialView: 'timeGridWeek',
+            initialView: 'dayGridMonth',
             nowIndicator: true,
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                right: 'dayGridMonth,timeGridWeek'
             },
-            navLinks: true, // can click day/week names to navigate views
-            editable: true,
-            selectable: true,
+            navLinks: true,
             selectMirror: true,
-            dayMaxEvents: true, // allow "more" link when too many events
-            events: [
-                {
-                    title: 'All Day Event',
-                    start: '2023-01-01',
-                },
-                {
-                    title: 'Long Event',
-                    start: '2023-01-07',
-                    end: '2023-01-10'
-                },
-                {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2023-01-09T16:00:00'
-                },
-                {
-                    groupId: 999,
-                    title: 'Repeating Event',
-                    start: '2023-01-16T16:00:00'
-                },
-                {
-                    title: 'Conference',
-                    start: '2023-01-11',
-                    end: '2023-01-13'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2023-01-12T10:30:00',
-                    end: '2023-01-12T12:30:00'
-                },
-                {
-                    title: 'Lunch',
-                    start: '2023-01-12T12:00:00'
-                },
-                {
-                    title: 'Meeting',
-                    start: '2023-01-12T14:30:00'
-                },
-                {
-                    title: 'Happy Hour',
-                    start: '2023-01-12T17:30:00'
-                },
-                {
-                    title: 'Dinner',
-                    start: '2023-01-12T20:00:00'
-                },
-                {
-                    title: 'Birthday Party',
-                    start: '2023-01-13T07:00:00'
-                },
-                {
-                    title: 'Click for Google',
-                    url: 'http://google.com/',
-                    start: '2023-01-28'
-                }
-            ]
+            editable: true,
+            dayMaxEvents: true,
+            dateClick: function(info) {
+                document.getElementById('date-debut').value = info.startStr;
+                const appointmentModal = new bootstrap.Modal(appointmentModalElement, {
+                    keyboard: false
+                });
+                appointmentModal.show();
+            },
+            dayCellDidMount: function(arg) {
+                arg.el.classList.add('fc-day');
+            },
+            events: []
         });
+
         calendar.render();
     });
+
+    // Handle form submission
+    document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const voiture = document.getElementById('voiture').value;
+        const service = document.getElementById('service').value;
+        const dateDebut = document.getElementById('date-debut').value;
+
+        console.log(dateDebut)
+        calendar.addEvent({
+            title: voiture + ' - ' + service,
+            start: dateDebut,
+        });
+
+        const modal = bootstrap.Modal.getInstance(appointmentModalElement);
+        modal.hide();
+    });
 </script>
-<div id='calendar'></div>
