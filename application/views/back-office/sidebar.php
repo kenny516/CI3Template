@@ -23,7 +23,7 @@
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="">
+            <a class="nav-link collapsed" href="<?= site_url('BackOffice/appointment'); ?>">
                 <i class="bi bi-calendar-week"></i>
                 <span>Rendez-vous</span>
             </a>
