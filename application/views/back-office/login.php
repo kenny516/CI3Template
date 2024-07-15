@@ -80,11 +80,6 @@
                                         'class' => 'btn btn-primary w-100 fw-bold p-2'
                                     )); ?>
                                 </div>
-
-                                <?php
-                                var_dump($this->session->userdata("user"));
-                                $error_message = $this->session->flashdata('error');
-                                ?>
                                 <?php if (!empty($error_message)) : ?>
                                     <div class="col-12">
                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">

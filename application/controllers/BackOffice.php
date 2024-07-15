@@ -17,14 +17,6 @@ class BackOffice extends CI_Controller
         $this->load->view(self::VIEW_FOLDER . 'login');
     }
 
-    public function index()
-    {
-        if (!$this->session->userdata('logged_in')) {
-            redirect('backoffice/login');
-        }
-        $this->load->view(self::VIEW_FOLDER . 'base_layout');
-    }
-
     public function add_admin()
     {
         $email = 'admin@gmail.com';
