@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dashboard - NiceAdmin Bootstrap Template</title>
+    <title>Mada Auto - Back Office</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -29,25 +29,22 @@
     <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet">
 </head>
 
-<body>
-<?php include 'header.php'; ?>
+<body class="d-flex flex-column">
+<?php $this->load->view('back-office/header.php'); ?>
 
-<?php include 'sidebar.php'; ?>
+<?php $this->load->view('back-office/sidebar.php'); ?>
 
-<main id="main" class="main">
-    <div class="pagetitle">
-        <h1>Dashboard</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-        </nav>
+<main id="main" class="main flex-grow-1">
+    <div class="pagetitle mb-3">
+        <h1><?= $title ?></h1>
     </div>
 
+    <section class="section">
+        <?php $this->load->view($content); ?>
+    </section>
 </main>
 
-<?php include 'footer.php'; ?>
+<?php $this->load->view('back-office/footer.php'); ?>
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
