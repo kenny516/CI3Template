@@ -3,6 +3,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class DetailsRendezVous_model extends CI_Model {
 
+    public function get_all() {
+        $this->db->select('garage_auto_details_rendez_vous.*, garage_auto_rendez_vous.*, garage_auto_voiture.immatriculation, garage_auto_service.nom as service_nom');
+        $this->db->from('garage_auto_details_rendez_vous');
+        $this->db->join('garage_auto_rendez_vous', 'garage_auto_details_rendez_vous.id_rendez_vous = garage_auto_rendez_vous.id_rendez_vous');
+        $this->db->join('garage_auto_voiture', 'garage_auto_rendez_vous.id_voiture = garage_auto_voiture.id_voiture');
+        $this->db->join('garage_auto_service', 'garage_auto_rendez_vous.id_service = garage_auto_service.id_service');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function get_details($data)
     {
         // Extract the service duration into a DateInterval instance

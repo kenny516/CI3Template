@@ -67,7 +67,7 @@
             dayCellDidMount: function(arg) {
                 arg.el.classList.add('fc-day');
             },
-            events: []
+            events: '<?= base_url('BackOffice/appointments/calendar') ?>' // Load events from the server
         });
 
         calendar.render();
