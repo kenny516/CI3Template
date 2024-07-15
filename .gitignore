@@ -18,5 +18,6 @@ application/logs/*
 /vendor/
 
 application/config/database.php
-.idea/*
+.idea/
+.idea/workspace.xml
 assets/vendor/*
