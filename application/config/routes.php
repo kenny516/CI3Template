@@ -63,3 +63,4 @@ $route['BackOffice/services/save'] = 'Back_office_service/save';
 $route['BackOffice/services/delete/(:any)'] = 'Back_office_service/services_delete/$1';
 
 
+$route['BackOffice/quotation/list'] = 'Back_office_quotation/RendezVous_model_list';
