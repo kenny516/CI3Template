@@ -8,7 +8,7 @@ class Back_office_service extends \CI_Controller
     {
         parent::__construct();
         $this->load->helper('form');
-        $this->load->model('Service_model');
+       // $this->load->model('Service_model');
     }
 
 
