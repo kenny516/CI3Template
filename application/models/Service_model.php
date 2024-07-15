@@ -35,4 +35,13 @@ class Service_model extends CI_Model {
         return $this->db->affected_rows();
     }
 
+    public function get_duree_service($id_service)
+    {
+        $service = $this->get_by_id($id_service);
+        $duree_parts = explode(':', $service['duree']);
+        $hours = (int) $duree_parts[0];
+        $minutes = (int) $duree_parts[1];
+        return new DateInterval("PT{$hours}H{$minutes}M");
+    }
+
 }

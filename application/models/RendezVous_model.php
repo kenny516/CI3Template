@@ -23,11 +23,7 @@ class RendezVous_model extends CI_Model {
      */
     public function insert($data) {
         // Extract the service duration into a DateInterval instance
-        $service = $this->Service_model->get_by_id($data['id_service']);
-        $duree_parts = explode(':', $service['duree']);
-        $hours = (int) $duree_parts[0];
-        $minutes = (int) $duree_parts[1];
-        $service_duration = new DateInterval("PT{$hours}H{$minutes}M");
+        $duree_service = $this->Service_model->get_duree_service($data['id_service']);
 
         // Get the opening and closing hours
         $ouvertures = $this->Ouverture_model->get_all();
@@ -37,56 +33,47 @@ class RendezVous_model extends CI_Model {
 
         // Convert opening and closing hours to DateTime objects
         $date_debut = DateTime::createFromFormat('Y-m-d H:i:s', $data['date_debut']);
-        $date_fin = clone $date_debut; // Create a copy of the original date
-        $date_fin->add($service_duration);
-
-        // Convert opening and closing times to DateTime on the same day
-        $fermeture_time = DateTime::createFromFormat('Y-m-d H:i:s', $date_debut->format('Y-m-d') . " $heure_fermeture:00:00");
-        $ouverture_time_next_day = DateTime::createFromFormat('Y-m-d H:i:s', $date_debut->modify('+1 day')->format('Y-m-d') . " $heure_ouverture:00:00");
+        $remaining_duration = $duree_service->h * 60 + $duree_service->i; // Total remaining duration in minutes
 
         $details = [];
 
-        if ($date_fin > $fermeture_time) {
-            // Appointment exceeds the closing hour, split it
-            $base_detail = [
-                'date_details' => $date_debut->format('Y-m-d'),
-                'heure_debut' => $date_debut->format('H:i:s'),
-                'heure_fin' => $fermeture_time->format('H:i:s'),
-                'id_rendez_vous' => null // This will be set after inserting the rendez_vous
-            ];
-            $details[] = $base_detail;
+        while ($remaining_duration > 0) {
+            $date_fin = clone $date_debut;
+            $fermeture_time = DateTime::createFromFormat('Y-m-d H:i:s', $date_debut->format('Y-m-d') . " $heure_fermeture:00:00");
 
-            // Calculate remaining duration
-            $interval_to_closing = $date_debut->diff($fermeture_time);
-            $remaining_duration = new DateInterval('PT0H0M');
-            $remaining_duration->h = $service_duration->h - $interval_to_closing->h;
-            $remaining_duration->i = $service_duration->i - $interval_to_closing->i;
+            $minutes_until_closing = ($fermeture_time->getTimestamp() - $date_debut->getTimestamp()) / 60;
 
-            $new_end_time = clone $ouverture_time_next_day;
-            $new_end_time->add($remaining_duration);
+            if ($remaining_duration > $minutes_until_closing) {
+                // Appointment exceeds the closing hour, create detail until closing time
+                $new_detail = [
+                    'date_details' => $date_debut->format('Y-m-d'),
+                    'heure_debut' => $date_debut->format('H:i:s'),
+                    'heure_fin' => $fermeture_time->format('H:i:s'),
+                    'id_rendez_vous' => null // This will be set after inserting the rendez_vous
+                ];
+                $details[] = $new_detail;
 
-            $next_day_detail = [
-                'date_details' => $ouverture_time_next_day->format('Y-m-d'),
-                'heure_debut' => $ouverture_time_next_day->format('H:i:s'),
-                'heure_fin' => $new_end_time->format('H:i:s'),
-                'id_rendez_vous' => null // This will be set after inserting the rendez_vous
-            ];
-            $details[] = $next_day_detail;
-        } else {
-            // Appointment within the same day
-            $base_detail = [
-                'date_details' => $date_debut->format('Y-m-d'),
-                'heure_debut' => $date_debut->format('H:i:s'),
-                'heure_fin' => $date_fin->format('H:i:s'),
-                'id_rendez_vous' => null // This will be set after inserting the rendez_vous
-            ];
-            $details[] = $base_detail;
+                // Calculate remaining duration
+                $remaining_duration -= $minutes_until_closing;
+
+                // Prepare for next day
+                $date_debut = DateTime::createFromFormat('Y-m-d H:i:s', $fermeture_time->format('Y-m-d') . " $heure_ouverture:00:00")->modify('+1 day');
+            } else {
+                // Appointment within the same day
+                $date_fin->modify("+$remaining_duration minutes");
+
+                $new_detail = [
+                    'date_details' => $date_debut->format('Y-m-d'),
+                    'heure_debut' => $date_debut->format('H:i:s'),
+                    'heure_fin' => $date_fin->format('H:i:s'),
+                    'id_rendez_vous' => null // This will be set after inserting the rendez_vous
+                ];
+                $details[] = $new_detail;
+
+                // Reset remaining duration
+                $remaining_duration = 0;
+            }
         }
-
-        echo '<pre>';
-        var_dump($details);
-        echo '</pre>';
-        die();
 
         // Insert the rendez_vous
         $this->db->insert('garage_auto_rendez_vous', $data);
