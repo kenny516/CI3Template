@@ -1,8 +1,3 @@
--- Administrateurs
-INSERT INTO garage_auto_admin (email, mots_de_passe)
-VALUES ('admin@gmail.com', PASSWORD('admin123')),
-       ('manager@gmail.com', PASSWORD('manager123'));
-
 -- Horaires d'ouverture
 INSERT INTO garage_auto_ouverture (ouvert, fermer)
 VALUES (8, 18);
