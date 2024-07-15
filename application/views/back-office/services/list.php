@@ -4,9 +4,9 @@
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                     <h5 class="card-title">Liste</h5>
-                    <a type="button" href="<?= site_url('BackOffice/services/form/') ?>" class="btn btn-primary">
                         Ajouter
-                        <i class="ms-1 bi bi-plus-circle"></i>
+                    <a type="button" href="<?= site_url('BackOffice/services/form') ?>" class="btn btn-primary">
+                    <i class="ms-1 bi bi-plus-circle"></i>
                     </a>
                 </div>
                 <table class="table">

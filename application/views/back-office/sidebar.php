@@ -30,7 +30,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="">
+            <a class="nav-link collapsed" href="<?= site_url('BackOffice/devis'); ?>">
                 <i class="bi bi-receipt"></i>
                 <span>Liste des devis</span>
             </a>
