@@ -13,7 +13,8 @@
     <link href="<?= base_url('assets/img/apple-touch-icon.png') ?>" rel="apple-touch-icon">
 
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
 
     <link href="<?= base_url('assets/vendor/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/vendor/bootstrap-icons/bootstrap-icons.css') ?>" rel="stylesheet">
@@ -41,7 +42,7 @@
                                     <p class="text-center small">Entrer vos identifiants pour vous connecter</p>
                                 </div>
 
-                                <?= form_open('',
+                                <?= form_open('backoffice/verify_login',
                                     array(
                                         'class' => 'row g-3',
                                         'method' => 'post'
@@ -53,7 +54,8 @@
                                         'name' => 'email',
                                         'class' => 'form-control',
                                         'id' => 'email',
-                                        'required' => 'required'
+                                        'required' => 'required',
+                                        'value' => 'admin@gmail.com'
                                     )); ?>
                                     <div class="invalid-feedback">
                                         Entrer un email valide
@@ -65,7 +67,8 @@
                                         'name' => 'password',
                                         'class' => 'form-control',
                                         'id' => 'password',
-                                        'required' => 'required'
+                                        'required' => 'required',
+                                        'value' => 'admin123'
                                     )); ?>
                                     <div class="invalid-feedback">
                                         Veuillez entrer votre mot de passe !
@@ -73,24 +76,33 @@
                                 </div>
                                 <div class="col-12">
                                     <?= form_submit(array(
-                                        'name'  => 'submit',
+                                        'name' => 'submit',
                                         'value' => 'Connexion',
                                         'class' => 'btn btn-primary w-100 fw-bold p-2'
                                     )); ?>
                                 </div>
-
+                                <?php if (!empty($error_message)) : ?>
                                 <div class="col-12">
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         <i class="bi bi-exclamation-octagon me-1"></i>
-                                        Erreur
+                                        <?= $error_message ?>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
                                     </div>
+                                    <div class="col-12">
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <i class="bi bi-exclamation-octagon me-1"></i>
+                                            Erreur
+                                        </div>
+                                    </div>
+                                    <?php endif; ?>
+
+                                    <?= form_close(); ?>
                                 </div>
-                                <?= form_close(); ?>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
     </div>
 </main>
