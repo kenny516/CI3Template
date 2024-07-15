@@ -35,6 +35,7 @@ class BackOffice extends CI_Controller
     {
         $data['content'] = self::VIEW_FOLDER . 'services/form';
         $data['title'] = 'Services';
+        $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
     }
 
     public function add_admin()
