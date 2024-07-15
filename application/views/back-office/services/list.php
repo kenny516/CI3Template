@@ -15,7 +15,7 @@
                     <tbody>
                     <?php foreach ($services as $service): ?>
                         <tr>
-                            <td><?= $service['id'] ?></td>
+                            <td><?= $service['id_service'] ?></td>
                             <td><?= $service['nom'] ?></td>
                             <td><?= $service['duree'] ?></td>
                             <td><?= $service['prix'] ?></td>
