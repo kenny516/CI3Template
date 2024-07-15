@@ -9,14 +9,14 @@
                     'id' => 'type',
                     'class' => 'form-control',
                     'type' => 'hidden',
-                    'value' => isset($data['id_service']) ? 'update' : ''
+                    'value' => isset($id_service) ? 'update' : ''
                 ]); ?>
                 <?= form_input([
                     'name' => 'id_service',
                     'id' => 'id_service',
                     'class' => 'form-control',
                     'type' => 'hidden',
-                    'value' => $data['id_service'] ?? ''
+                    'value' => $id_service ?? ''
                 ]); ?>
                 <div class="row mb-3">
                     <label for="nom" class="col-sm-2 col-form-label">Nom</label>
@@ -26,10 +26,10 @@
                             'id' => 'nom',
                             'class' => 'form-control',
                             'type' => 'text',
-                            'value' => $data['nom'] ?? ''
+                            'value' => $nom ?? ''
                         ]); ?>
+                        <?= form_error('nom', '<div class="text-danger">', '</div>'); ?>
                     </div>
-
                 </div>
                 <div class="row mb-3">
                     <label for="duree" class="col-sm-2 col-form-label">Durée</label>
@@ -39,8 +39,9 @@
                             'id' => 'duree',
                             'class' => 'form-control',
                             'type' => 'time',
-                            'value' => $data['duree'] ?? ''
+                            'value' => $duree ?? ''
                         ]); ?>
+                        <?= form_error('duree', '<div class="text-danger">', '</div>'); ?>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -50,9 +51,10 @@
                             'name' => 'prix',
                             'id' => 'prix',
                             'class' => 'form-control',
-                            'type' => 'text',
-                            'value' => $data['prix'] ?? ''
+                            'type' => 'number',
+                            'value' => $prix ?? ''
                         ]); ?>
+                        <?= form_error('prix', '<div class="text-danger">', '</div>'); ?>
                     </div>
                 </div>
                 <div>
