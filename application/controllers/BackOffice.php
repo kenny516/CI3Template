@@ -42,11 +42,11 @@ class BackOffice extends CI_Controller
                     'logged_in' => TRUE
                 );
                 $this->session->set_userdata("user",$session_data);
-
+                redirect('BackOffice/services/list');
             } else {
                 $this->session->set_flashdata('error', 'Identifiant incorrect');
+                redirect('BackOffice/login');
             }
-            redirect('backoffice/index');
         }
     }
 }
