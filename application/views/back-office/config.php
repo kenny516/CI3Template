@@ -29,10 +29,10 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Date de référence</h5>
-                <form class="row gx-3">
+                <form class="row gx-3" action="<?= base_url('BackOffice/dashboard/reference_date') ?>" method="post">
                     <div class="col-12 mb-3">
-                        <label for="date-reference" class="form-label">Choisir une date</label>
-                        <input type="date" class="form-control" name="date-reference" id="date-reference">
+                        <label for="reference_date" class="form-label">Choisir une date</label>
+                        <input type="date" class="form-control" name="reference_date" id="reference_date" value="<?= $this->session->userdata('reference_date') ?>" required>
                     </div>
                     <div>
                         <button type="submit" class="btn btn-primary px-4 fw-bold">Modifier</button>

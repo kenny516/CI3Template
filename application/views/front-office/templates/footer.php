@@ -30,7 +30,7 @@
 <div class="container-fluid bg-dark py-4 px-sm-3 px-md-5">
     <p class="mb-2 text-center text-body">&copy; <a href="#">Mada Auto</a>. Tous droits réservés.</p>
     <p class="m-0 text-center text-body">
-        <a href="#">Kenny ETU00XXXX</a>,
+        <a href="#">Kenny ETU002409</a>,
         <a href="#">Kevin ETU002546</a>,
         <a href="#">Tiary ETU003057</a>
     </p>

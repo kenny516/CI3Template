@@ -112,7 +112,7 @@
     }
 
     $(document).ready(function() {
-        const date_reference = '2024-07-16';
+        const date_reference = '<?= $reference_date ?>';
         $.when(
             $.ajax({
                 url: '<?= site_url('Back_office_dashboard/montantPayeParDateReference'); ?>',
