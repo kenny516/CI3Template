@@ -71,7 +71,9 @@ $route['BackOffice/login/add_admin'] = 'Back_office_login/add_admin';
 $route['BackOffice/appointments/calendar'] = 'Back_office_rendez_vous/fetch_appointments';
 $route['BackOffice/quotation/list'] = 'Back_office_quotation/RendezVous_model_list';
 $route['BackOffice/slot'] = 'Back_office_slot';
+
 $route['BackOffice/dashboard'] = 'Back_office_dashboard';
+$route['BackOffice/dashboard/reference_date'] = 'Back_office_dashboard/set_reference_date';
 
 $route['BackOffice/reinitialize'] = 'BackOffice/reinitialize_database';
 

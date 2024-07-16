@@ -13,6 +13,7 @@ class Back_office_dashboard extends CI_Controller
     {
         $data['content'] = BACK_OFFICE_VIEW_FOLDER. 'dashboard';
         $data['title'] = 'Tableau de bord';
+        $data['reference_date'] = $this->session->userdata('reference_date') ?? date('Y-m-d');
         $this->load->view(BACK_OFFICE_VIEW_FOLDER . 'base_layout', $data);
     }
 
@@ -45,6 +46,15 @@ class Back_office_dashboard extends CI_Controller
         $date_details = $this->input->post('date_details');
         $result = $this->Dashboard_model->getVoituresTraiteesParDate($date_details);
         echo json_encode($result);
+    }
+
+    public function set_reference_date() {
+        $reference_date = $this->input->post('reference_date');
+        if ($this->session->userdata('reference_date')) {
+            $this->session->unset_userdata('reference_date');
+        }
+        $this->session->set_userdata('reference_date', $reference_date);
+        redirect('BackOffice/services/list');
     }
 
 }
