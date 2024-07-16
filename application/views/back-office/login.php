@@ -19,7 +19,7 @@
     <link href="<?= base_url('assets/vendor/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/vendor/bootstrap-icons/bootstrap-icons.css') ?>" rel="stylesheet">
 
-    <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/css/backoffice-style.css') ?>" rel="stylesheet">
 </head>
 
 <body>
