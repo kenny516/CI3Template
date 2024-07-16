@@ -40,7 +40,7 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                 <div class="navbar-nav ml-auto py-0">
-                    <a href="" class="nav-item nav-link active">Home</a>
+                    <a href="<?= site_url('front-office/Home'); ?>" class="nav-item nav-link active">Home</a>
                     <a href="" class="nav-item nav-link">About</a>
                     <a href="" class="nav-item nav-link">Service</a>
                     <div class="nav-item dropdown">
@@ -58,7 +58,7 @@
                             <a href="" class="dropdown-item">Testimonial</a>
                         </div>
                     </div>
-                    <a href="" class="nav-item nav-link">Login</a>
+                    <a href="<?= site_url('front-office/Login'); ?>" class="nav-item nav-link">Login</a>
                 </div>
             </div>
         </nav>

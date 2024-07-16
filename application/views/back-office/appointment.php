@@ -2,6 +2,11 @@
     #calendar td.fc-day:hover {
         cursor: pointer;
     }
+
+    .fc-scrollgrid a {
+        text-decoration: none;
+        color: black;
+    }
 </style>
 
 <div id="calendar"></div>
