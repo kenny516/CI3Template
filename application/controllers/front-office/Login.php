@@ -26,13 +26,15 @@ class Login extends CI_Controller
         $this->form_validation->set_rules('numero-voiture', 'Numéro de voiture', 'required');
         $this->form_validation->set_rules('type-voiture', 'Type de voiture', 'required');
 
-        if ($this->form_validation->run() == FALSE) {
+        if (!$this->form_validation->run()) {
+            $data['content'] = self::VIEW_FOLDER . 'login';
             $data['type_voiture'] = $this->Type_voiture_model->get_all();
-            $this->load->view(self::VIEW_FOLDER . 'login', $data);
+            $data['numero-voiture'] = $this->input->post('numero-voiture');
+            $this->load->view(self::VIEW_FOLDER . 'templates/base_layout', $data);
         } else {
             $numero_voiture = $this->input->post('numero-voiture');
             $type_voiture = $this->input->post('type-voiture');
-            $client = $this->Voiture_model->verify_voiture_log($numero_voiture, $type_voiture);
+            $client = $this->Voiture_model->get_by_immatriculation($numero_voiture);
             if ($client) {
                 $this->session->set_userdata("client", $client);
                 redirect('front-office/Home');
@@ -49,4 +51,3 @@ class Login extends CI_Controller
         }
     }
 }
-?>

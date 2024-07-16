@@ -29,6 +29,7 @@ class Voiture_model extends CI_Model {
         $query = $this->db->get_where('garage_auto_voiture', ['immatriculation' => $immatriculation]);
         return $query->row_array();
     }
+
     public function verify_voiture_log($immatriculation,$id_type)
     {
         $query = $this->db->get_where('garage_auto_voiture', ['immatriculation' => $immatriculation] &&  ['id_type_voiture' => $id_type]);
