@@ -43,6 +43,14 @@ class Back_office_csv extends CI_Controller {
 
             $this->load->model('Travaux_csv_model');
             $this->Travaux_csv_model->insert_travaux($travaux_data);
+
+
+            $this->load->model('Garage_auto_model');
+            $this->Garage_auto_model->insert_services_from_import();
+            $this->Garage_auto_model->insert_type_voitures_from_import();
+            $this->Garage_auto_model->insert_voitures_from_import();
+
+
             redirect('BackOffice/services/list');
         } else {
             $this->session->set_flashdata('error', 'Please select both files.');
