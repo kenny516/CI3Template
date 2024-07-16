@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Utilisation par jour</h5>
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-lg-3">
                     <input type="date" id="date-input" class="form-control" name="date" aria-label="date">
                     <div class="invalid-feedback">
