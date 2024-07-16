@@ -18,11 +18,11 @@
                             <input type="text" class="form-control p-4" aria-label="numero-voiture" name="numero-voiture" placeholder="Numéro de voiture" required="required">
                         </div>
                         <div class="form-group mb-4">
-                            <select class="custom-select px-4" name="type-voiture" aria-label="type-voiture" style="height: 50px;">
+                            <select class="custom-select px-4" name="type-voiture" aria-label="type-voiture" style="height: 50px;" required="required">
                                 <option selected>Type de voiture</option>
-                                <option value="2">Location 2</option>
-                                <option value="1">4 * 4</option>
-                                <option value="3">Location 3</option>
+                                <?php foreach ($type_voiture as $t_v): ?>
+                                <option value="<?= $t_v['id_type_voiture'] ?>"><?= $t_v['description'] ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="form-group mb-0">
