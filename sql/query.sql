@@ -55,12 +55,12 @@ WHERE garv.date_paiement IS NOT NULL
 GROUP BY gatv.id_type_voiture;
 
 -- Voitures traitées dans une date donnée
-SELECT COUNT(gadrv.id_details),
+SELECT COUNT(gadrv.id_details) AS nb_voitures,
        gadrv.date_details
 FROM garage_auto_details_rendez_vous gadrv
         JOIN
      garage_auto.garage_auto_rendez_vous garv ON gadrv.id_rendez_vous = garv.id_rendez_vous
         JOIN
     garage_auto.garage_auto_service gas ON garv.id_service = gas.id_service
-WHERE gadrv.date_details = ''
+WHERE gadrv.date_details = '2024-07-16'
 GROUP BY gadrv.date_details;
