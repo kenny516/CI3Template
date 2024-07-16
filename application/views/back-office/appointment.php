@@ -2,6 +2,11 @@
     #calendar td.fc-day:hover {
         cursor: pointer;
     }
+
+    .fc-scrollgrid a {
+        text-decoration: none;
+        color: black;
+    }
 </style>
 
 <div id="calendar"></div>
@@ -43,7 +48,7 @@
     </div>
 </div>
 
-<script src="<?= base_url('assets/js/index.global.min.js'); ?>"></script>
+<script src="<?= base_url('assets/js/fullcalendar.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/jQuery3.7.1.js') ?>"></script>
 <script>
     let calendar;
