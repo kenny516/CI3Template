@@ -31,4 +31,8 @@ class Type_voiture_model extends CI_Model {
         $this->db->where('id_type_voiture', $id);
         return $this->db->delete('garage_auto_type_voiture');
     }
+
+    public function delete_all() {
+        return $this->db->delete('garage_auto_type_voiture');
+    }
 }

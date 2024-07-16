@@ -45,6 +45,11 @@ class RendezVous_model extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    public function delete_all() {
+        return $this->db->delete('garage_auto_rendez_vous');
+    }
+
     public function update_payment_date($id_rendez_vous, $date_paiement) {
         $this->db->where('id', $id_rendez_vous);
         $this->db->where('date_debut <=', $date_paiement);

@@ -54,6 +54,10 @@ class Service_model extends CI_Model {
         }
     }
 
+    public function delete_all() {
+        return $this->db->delete('garage_auto_service');
+    }
+
     public function get_duree_service($id_service)
     {
         $service = $this->get_by_id($id_service);
