@@ -85,23 +85,24 @@ class DetailsRendezVous_model extends CI_Model
         return $this->db->delete('garage_auto_details_rendez_vous');
     }
 
-    public function get_available_slots($start_date, $end_date)
+    public function get_available_slots($start_date, $end_date): array
     {
         $sql = "SELECT *
             FROM garage_auto_slot AS slot
             WHERE slot.id_slot NOT IN (
                 SELECT details_date.id_slot
-                FROM garage_auto_date_rendez_vous AS details_date
-                WHERE
-                    ((details_date.date_debut BETWEEN ? AND ?)
-                        OR (details_date.date_fin BETWEEN ? AND ?))
-                    OR ((? BETWEEN details_date.date_debut AND details_date.date_fin)
-                        OR (? BETWEEN details_date.date_debut AND details_date.date_fin))
+                    FROM garage_auto_date_rendez_vous AS details_date
+                    WHERE
+                        ((details_date.date_debut >= ? AND details_date.date_debut <= ?)
+                            OR (details_date.date_fin >= ? AND details_date.date_fin <= ?))
+                        OR ((? >= details_date.date_debut AND ? <= details_date.date_fin)
+                            OR (? >= details_date.date_debut AND ? <= details_date.date_fin))
             )";
         $query = $this->db->query($sql, array(
             $start_date, $end_date,
             $start_date, $end_date,
-            $start_date, $end_date,
+            $start_date, $start_date,
+            $end_date, $end_date
         ));
         $result = $query->result_array(); // Fetch results as an associative array
         $num_rows = $query->num_rows(); // Nombre de lignes affectées
