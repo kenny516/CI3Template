@@ -10,6 +10,9 @@ class Back_office_service extends \CI_Controller
         $this->load->library('form_validation');
         $this->load->helper('form');
         $this->load->model('Service_model');
+        if (!$this->session->userdata("user")['id_admin']){
+            redirect('BackOffice/login');
+        }
     }
 
     // redirection

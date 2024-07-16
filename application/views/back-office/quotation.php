@@ -63,9 +63,9 @@
                             success: function(response) {
                                 if (response.success) {
                                     datePaymentCell.text(dateValue);
-                                    console.log('Date de paiement mise à jour avec succès:', response.success);
+                                    console.log('Date de paiement mise à jour avec succès ');
                                 } else {
-                                    alert('Erreur lors de la mise à jour de la date de paiement : ' + response.success);
+                                    alert('Date de paiement anterieur a la date debut ');
                                     // Réinitialisation de la valeur du champ de formulaire à sa valeur d'origine
                                     $(dateInput).val(originalDate);
                                 }

@@ -9,6 +9,9 @@ class Back_office_quotation extends CI_Controller
         parent::__construct();
         $this->load->helper('form');
         $this->load->model('RendezVous_model');
+        if (!$this->session->userdata("user")['id_admin']){
+            redirect('BackOffice/login');
+        }
     }
 
     public function RendezVous_model_list() {

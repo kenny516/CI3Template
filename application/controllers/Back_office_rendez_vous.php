@@ -6,6 +6,9 @@ class Back_office_rendez_vous extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('DetailsRendezVous_model');
+        if (!$this->session->userdata("user")['id_admin']){
+            redirect('BackOffice/login');
+        }
     }
 
     public function fetch_appointments() {
