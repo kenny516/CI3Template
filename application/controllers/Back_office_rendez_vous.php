@@ -9,13 +9,15 @@ class Back_office_rendez_vous extends CI_Controller {
     }
 
     public function fetch_appointments() {
+        header('Content-Type: application/json');
+
         $appointments = $this->DetailsRendezVous_model->get_all();
 
         $events = [];
         foreach ($appointments as $appointment) {
             $events[] = [
                 'title' => $appointment['immatriculation'] . ' - ' . $appointment['service_nom'],
-                'start' => $appointment['date_debut'],
+                'start' => $appointment['date_details'] . ' ' . $appointment['heure_debut'],
                 'end' => $appointment['date_details'] . ' ' . $appointment['heure_fin']
             ];
         }
