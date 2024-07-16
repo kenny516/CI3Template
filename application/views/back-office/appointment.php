@@ -57,7 +57,7 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         calendar = new FullCalendar.Calendar(calendarElement, {
-            initialDate: '2023-01-12',
+            initialDate: new Date().toISOString().split('T')[0],
             initialView: 'dayGridMonth',
             nowIndicator: true,
             headerToolbar: {
@@ -70,19 +70,10 @@
             editable: true,
             dayMaxEvents: true,
             dateClick: function (info) {
-                // Extract date part from info.dateStr and create a new Date object
                 const dateDebut = new Date(info.dateStr);
+                dateDebut.setHours(8, 0, 0, 0);
 
-                // Set the time to 08:00 AM
-                dateDebut.setHours(8, 0, 0, 0); // Hours, Minutes, Seconds, Milliseconds
-
-                // Convert the date to local time zone
-                const localFormattedDate = `${dateDebut.getFullYear()}-${String(dateDebut.getMonth() + 1).padStart(2, '0')}-${String(dateDebut.getDate()).padStart(2, '0')}T${String(dateDebut.getHours()).padStart(2, '0')}:${String(dateDebut.getMinutes()).padStart(2, '0')}`;
-
-                // Set the value of the date-debut input field
-                document.getElementById('date-debut').value = localFormattedDate;
-
-                // Show the appointment modal
+                document.getElementById('date-debut').value = `${dateDebut.getFullYear()}-${String(dateDebut.getMonth() + 1).padStart(2, '0')}-${String(dateDebut.getDate()).padStart(2, '0')}T${String(dateDebut.getHours()).padStart(2, '0')}:${String(dateDebut.getMinutes()).padStart(2, '0')}`;
                 const appointmentModal = new bootstrap.Modal(appointmentModalElement, {
                     keyboard: false
                 });

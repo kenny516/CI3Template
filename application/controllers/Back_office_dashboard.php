@@ -15,4 +15,6 @@ class Back_office_dashboard extends CI_Controller
         $this->load->view(BACK_OFFICE_VIEW_FOLDER . 'base_layout', $data);
     }
 
+
+
 }
