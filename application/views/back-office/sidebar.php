@@ -23,16 +23,27 @@
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
+            <a class="nav-link collapsed" href="<?= site_url('BackOffice/dashboard'); ?>">
+                <i class="bi bi-grid"></i>
+                <span>Tableau de bord</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" href="<?= site_url('BackOffice/appointment'); ?>">
                 <i class="bi bi-calendar-week"></i>
                 <span>Rendez-vous</span>
             </a>
         </li>
-
         <li class="nav-item">
             <a class="nav-link collapsed" href="<?= site_url('BackOffice/quotation/list'); ?>">
                 <i class="bi bi-receipt"></i>
                 <span>Liste des devis</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="<?= site_url('BackOffice/slot'); ?>">
+                <i class="ri-car-fill"></i>
+                <span>Utilisation des slots</span>
             </a>
         </li>
         <li class="nav-item">
