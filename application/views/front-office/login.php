@@ -18,12 +18,19 @@
                     <?php endif; ?>
                     <?= form_open('front-office/Login/authenticate'); ?>
                     <div class="form-group mb-4">
-                        <input type="text" class="form-control p-4" name="numero-voiture" placeholder="Numéro de voiture" required>
+                        <?= form_input([
+                            'name' => 'numero-voiture',
+                            'id' => 'numero-voiture',
+                            'class' => 'form-control p-4',
+                            'type' => 'text',
+                            'value' => $numero_voiture ?? '',
+                            'placeholder' => "Numéro de voiture"
+                        ]); ?>
                         <?= form_error('numero-voiture', '<div class="text-danger">', '</div>'); ?>
                     </div>
                     <div class="form-group mb-4">
-                        <select class="custom-select px-4" name="type-voiture" style="height: 50px;" required>
-                            <option selected>Type de voiture</option>
+                        <select class="custom-select px-4" name="type-voiture" style="height: 50px;">
+                            <option value="" selected>Type de voiture...</option>
                             <?php foreach ($type_voiture as $t_v): ?>
                                 <option value="<?= $t_v['id_type_voiture'] ?>"><?= $t_v['description'] ?></option>
                             <?php endforeach; ?>

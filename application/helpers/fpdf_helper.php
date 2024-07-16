@@ -39,7 +39,7 @@ if (! function_exists('generate_service_receipt_pdf')) {
         $pdf->Cell(0, 10, utf8_decode($rendezVousDetails['service_name']), 0, 1, 'L');
 
         $pdf->Cell(60, 10, utf8_decode('Prix du Service:'), 0, 0, 'L');
-        $pdf->Cell(0, 10, utf8_decode($rendezVousDetails['service_price']) . ' $', 0, 1, 'L');
+        $pdf->Cell(0, 10, utf8_decode($rendezVousDetails['service_price']) . ' Ar', 0, 1, 'L');
 
         $pdf->Cell(60, 10, utf8_decode('Durée du Service:'), 0, 0, 'L');
         $pdf->Cell(0, 10, utf8_decode($rendezVousDetails['service_duration']), 0, 1, 'L');
@@ -53,7 +53,7 @@ if (! function_exists('generate_service_receipt_pdf')) {
 
         $pdf->SetFont('Arial', '', 12);
         $pdf->Cell(60, 10, utf8_decode('Total:'), 0, 0, 'L');
-        $pdf->Cell(0, 10, utf8_decode($rendezVousDetails['service_price']) . ' $', 0, 1, 'L');
+        $pdf->Cell(0, 10, utf8_decode($rendezVousDetails['service_price']) . ' Ar', 0, 1, 'L');
 
         $pdf->Output('D', $filename);
     }

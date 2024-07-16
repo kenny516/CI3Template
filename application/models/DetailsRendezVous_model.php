@@ -8,6 +8,7 @@ class DetailsRendezVous_model extends CI_Model
         parent::__construct();
         $this->load->model('Service_model');
         $this->load->model('Ouverture_model');
+        $this->load->model('RendezVous_model');
     }
 
 
@@ -91,10 +92,17 @@ class DetailsRendezVous_model extends CI_Model
             WHERE slot.id_slot NOT IN (
                 SELECT details_date.id_slot
                 FROM garage_auto_date_rendez_vous AS details_date
-                WHERE details_date.date_debut BETWEEN ? AND ?
-                    OR details_date.date_fin BETWEEN ? AND ?
+                WHERE
+                    ((details_date.date_debut BETWEEN ? AND ?)
+                        OR (details_date.date_fin BETWEEN ? AND ?))
+                    OR ((? BETWEEN details_date.date_debut AND details_date.date_fin)
+                        OR (? BETWEEN details_date.date_debut AND details_date.date_fin))
             )";
-        $query = $this->db->query($sql, array($start_date, $end_date, $start_date, $end_date));
+        $query = $this->db->query($sql, array(
+            $start_date, $end_date,
+            $start_date, $end_date,
+            $start_date, $end_date,
+        ));
         $result = $query->result_array(); // Fetch results as an associative array
         $num_rows = $query->num_rows(); // Nombre de lignes affectées
         return array('result' => $result, 'num_rows' => $num_rows);

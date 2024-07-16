@@ -60,6 +60,28 @@ class RendezVous_model extends CI_Model {
         return $this->db->affected_rows(); // Retourne le nombre de lignes modifiées
     }
 
+    public function get_quotation_by_id($id_rendez_vous) {
+        $this->db->select('
+            rv.date_debut,
+            v.immatriculation,
+            tv.description AS type_voiture,
+            s.nom AS service_name,
+            s.prix AS service_price,
+            s.duree AS service_duration
+        ');
+        $this->db->from('garage_auto_rendez_vous rv');
+        $this->db->join('garage_auto_voiture v', 'rv.id_voiture = v.id_voiture');
+        $this->db->join('garage_auto_type_voiture tv', 'v.id_type_voiture = tv.id_type_voiture');
+        $this->db->join('garage_auto_service s', 'rv.id_service = s.id_service');
+        $this->db->where('rv.id_rendez_vous', $id_rendez_vous);
 
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return false;
+        }
+    }
 
 }

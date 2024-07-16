@@ -24,7 +24,7 @@ CREATE TABLE garage_auto_type_voiture
 CREATE TABLE garage_auto_voiture
 (
     id_voiture      INT PRIMARY KEY AUTO_INCREMENT,
-    immatriculation VARCHAR(7),
+    immatriculation VARCHAR(25),
     id_type_voiture INT,
     FOREIGN KEY (id_type_voiture) REFERENCES garage_auto_type_voiture (id_type_voiture)
 );
