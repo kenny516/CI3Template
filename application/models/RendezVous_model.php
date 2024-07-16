@@ -51,7 +51,7 @@ class RendezVous_model extends CI_Model {
     }
 
     public function update_payment_date($id_rendez_vous, $date_paiement) {
-        $this->db->where('id', $id_rendez_vous);
+        $this->db->where('id_rendez_vous', $id_rendez_vous);
         $this->db->where('date_debut <=', $date_paiement);
         $this->db->update('garage_auto_rendez_vous', array('date_paiement' => $date_paiement));
 

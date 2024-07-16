@@ -75,4 +75,6 @@ $route['BackOffice/quotation/list'] = 'Back_office_quotation/RendezVous_model_li
 /// Front office
 $route['FrontOffice/quotation/pdf'] = 'Front_office_devis/generate_service_receipt';
 
+$route['login'] = 'front-office/Login/index';
+
 
