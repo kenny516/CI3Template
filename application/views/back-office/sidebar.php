@@ -44,9 +44,12 @@
             <a class="nav-link collapsed" href="<?= site_url('BackOffice/slot'); ?>">
                 <i class="ri-car-fill"></i>
                 <span>Utilisation des slots</span>
-            <a class="nav-link collapsed text-success" href="<?= site_url('Back_office_csv'); ?>">
-                <i class="ri-pencil-line text-success"></i>
-                <span>Import csv</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="<?= site_url('Back_office_config'); ?>">
+                <i class="bi bi-gear-fill"></i>
+                <span>Configuration et Import CSV</span>
             </a>
         </li>
         <li class="nav-item">

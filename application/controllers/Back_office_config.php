@@ -1,10 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Back_office_csv extends CI_Controller {
-
-    const VIEW_FOLDER = 'back-office/';
-
+class Back_office_config extends CI_Controller
+{
     public function __construct() {
         parent::__construct();
         $this->load->helper(array('form', 'url'));
@@ -13,9 +11,9 @@ class Back_office_csv extends CI_Controller {
     }
 
     public function index() {
-        $data['content'] = self::VIEW_FOLDER . 'ImportCSV';
-        $data['title'] = 'Import csv';
-        $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
+        $data['content'] = BACK_OFFICE_VIEW_FOLDER . 'config';
+        $data['title'] = 'Configuration';
+        $this->load->view(BACK_OFFICE_VIEW_FOLDER . 'base_layout', $data);
     }
 
     public function process_import() {
@@ -43,6 +41,14 @@ class Back_office_csv extends CI_Controller {
 
             $this->load->model('Travaux_csv_model');
             $this->Travaux_csv_model->insert_travaux($travaux_data);
+
+
+            $this->load->model('Garage_auto_model');
+            $this->Garage_auto_model->insert_services_from_import();
+            $this->Garage_auto_model->insert_type_voitures_from_import();
+            $this->Garage_auto_model->insert_voitures_from_import();
+
+
             redirect('BackOffice/services/list');
         } else {
             $this->session->set_flashdata('error', 'Please select both files.');
