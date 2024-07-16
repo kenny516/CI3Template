@@ -16,6 +16,6 @@ FROM garage_auto_slot AS slot
 WHERE slot.id_slot NOT IN (
     SELECT details_date.id_slot
     FROM garage_auto_date_rendez_vous AS details_date
-    WHERE details_date.date_debut BETWEEN '2024-07-16 16:00:00' AND '2024-07-17 19:00:00'
-        OR details_date.date_fin BETWEEN '2024-07-16 16:00:00' AND '2024-07-17 19:00:00'
+    WHERE details_date.date_debut BETWEEN '2024-07-15 16:00:00' AND '2024-07-15 19:00:00'
+        OR details_date.date_fin BETWEEN '2024-07-15 16:00:00' AND '2024-07-15 19:00:00'
 );

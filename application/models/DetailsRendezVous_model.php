@@ -1,9 +1,18 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class DetailsRendezVous_model extends CI_Model {
+class DetailsRendezVous_model extends CI_Model
+{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Service_model');
+        $this->load->model('Ouverture_model');
+    }
 
-    public function get_all() {
+
+    public function get_all()
+    {
         $this->db->select('garage_auto_details_rendez_vous.*, garage_auto_rendez_vous.*, garage_auto_voiture.immatriculation, garage_auto_service.nom as service_nom');
         $this->db->from('garage_auto_details_rendez_vous');
         $this->db->join('garage_auto_rendez_vous', 'garage_auto_details_rendez_vous.id_rendez_vous = garage_auto_rendez_vous.id_rendez_vous');
@@ -69,5 +78,24 @@ class DetailsRendezVous_model extends CI_Model {
         }
         return $details;
     }
+
+    public function get_available_slots($start_date, $end_date)
+    {
+        $sql = "SELECT *
+            FROM garage_auto_slot AS slot
+            WHERE slot.id_slot NOT IN (
+                SELECT details_date.id_slot
+                FROM garage_auto_date_rendez_vous AS details_date
+                WHERE details_date.date_debut BETWEEN ? AND ?
+                    OR details_date.date_fin BETWEEN ? AND ?
+            )";
+        $query = $this->db->query($sql, array($start_date, $end_date, $start_date, $end_date));
+        $result = $query->result_array(); // Fetch results as an associative array
+        $num_rows = $query->num_rows(); // Nombre de lignes affectées
+        return array('result' => $result, 'num_rows' => $num_rows);
+    }
+
+
+
 
 }
