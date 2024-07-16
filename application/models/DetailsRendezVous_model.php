@@ -22,10 +22,6 @@ class DetailsRendezVous_model extends CI_Model
         return $query->result_array();
     }
 
-    public function delete_all() {
-        return $this->db->delete('garage_auto_details_rendez_vous');
-    }
-
     public function get_details($data)
     {
         // Extract the service duration into a DateInterval instance
@@ -83,6 +79,11 @@ class DetailsRendezVous_model extends CI_Model
         return $details;
     }
 
+    public function delete_all() {
+        $this->db->where('1', '1');
+        return $this->db->delete('garage_auto_details_rendez_vous');
+    }
+
     public function get_available_slots($start_date, $end_date)
     {
         $sql = "SELECT *
@@ -98,8 +99,5 @@ class DetailsRendezVous_model extends CI_Model
         $num_rows = $query->num_rows(); // Nombre de lignes affectées
         return array('result' => $result, 'num_rows' => $num_rows);
     }
-
-
-
 
 }

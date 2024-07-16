@@ -47,6 +47,7 @@ class RendezVous_model extends CI_Model {
     }
 
     public function delete_all() {
+        $this->db->where('1', '1');
         return $this->db->delete('garage_auto_rendez_vous');
     }
 

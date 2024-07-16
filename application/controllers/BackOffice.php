@@ -48,8 +48,8 @@ class BackOffice extends CI_Controller
         $this->DetailsRendezVous_model->delete_all();
         $this->RendezVous_model->delete_all();
         $this->Service_model->delete_all();
-        $this->Type_voiture_model->delete_all();
         $this->Voiture_model->delete_all();
+        $this->Type_voiture_model->delete_all();
         redirect('BackOffice/services/list');
     }
 
