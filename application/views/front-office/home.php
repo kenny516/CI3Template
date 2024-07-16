@@ -38,11 +38,11 @@
 <div class="container-fluid py-5">
     <div class="container pt-5 pb-3">
         <h1 class="display-1 text-primary text-center">01</h1>
-        <h1 class="display-4 text-uppercase text-center mb-5">Welcome To <span class="text-primary">Royal
-                    Cars</span></h1>
+        <h1 class="display-4 text-uppercase text-center mb-5">Bienvenue à <span class="text-primary">Mada
+                    Auto</span></h1>
         <div class="row justify-content-center">
             <div class="col-lg-10 text-center">
-                <img class="w-75 mb-4" src="img/about.png" alt="">
+                <img class="w-75 mb-4" src="<?= base_url('assets/img/about.png'); ?>" alt="">
                 <p>Chez Mada Auto, nous offrons des services de réparation et d'entretien de la plus haute qualité. Que ce soit pour une réparation majeure ou un entretien de routine, notre équipe de professionnels expérimentés est là pour vous aider. Nous utilisons uniquement des pièces de qualité supérieure et les dernières technologies pour garantir que votre véhicule fonctionne parfaitement.</p>
             </div>
         </div>
@@ -62,7 +62,7 @@
                          style="width: 100px; height: 100px;">
                         <i class="fa fa-2x fa-car text-secondary"></i>
                     </div>
-                    <h4 class="text-light text-uppercase m-0">Rendez-vous à tout moment</h4>
+                    <h4 class="text-light text-uppercase m-0">Rendez-vous à nos horaires</h4>
                 </div>
             </div>
             <div class="col-lg-4 mb-2">
