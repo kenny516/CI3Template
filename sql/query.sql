@@ -19,3 +19,21 @@ WHERE slot.id_slot NOT IN (
     WHERE details_date.date_debut BETWEEN '2024-07-15 16:00:00' AND '2024-07-15 19:00:00'
         OR details_date.date_fin BETWEEN '2024-07-15 16:00:00' AND '2024-07-15 19:00:00'
 );
+
+/*
+ * Requêtes pour le dashboard
+ */
+SELECT SUM(gas.prix) AS montant_paye_par_date_reference
+FROM garage_auto_rendez_vous AS garv
+        JOIN
+    garage_auto_service gas ON garv.id_service = gas.id_service
+WHERE garv.date_paiement IS NOT NULL       AND
+      DATE(garv.date_debut) = '2024-07-16' AND
+      garv.date_paiement >= DATE(garv.date_debut);
+
+SELECT SUM(gas.prix) AS montant_impaye_par_date_reference
+FROM garage_auto_rendez_vous AS garv
+         JOIN
+     garage_auto_service gas ON garv.id_service = gas.id_service
+WHERE garv.date_paiement IS NULL         AND
+    DATE(garv.date_debut) = '2024-07-17';
