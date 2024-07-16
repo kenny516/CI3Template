@@ -35,5 +35,11 @@
                 <span>Liste des devis</span>
             </a>
         </li>
+        <li class="nav-item">
+            <button class="btn btn-danger " href="<?= site_url('BackOffice/'); ?>">
+                <i class="ri-delete-bin-2-line"></i>
+                <span>SUPR DATA</span>
+            </button>
+        </li>
     </ul>
 </aside>
