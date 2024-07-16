@@ -42,7 +42,8 @@ class Login extends CI_Controller
                     "id_type_voiture" => $type_voiture
                 );
                 $this->Voiture_model->insert($data);
-                $this->session->set_userdata("client", $data);
+                $client = $this->Voiture_model->verify_voiture_log($numero_voiture, $type_voiture);
+                $this->session->set_userdata("client", $client);
                 redirect('front-office/Home');
             }
         }
