@@ -3,11 +3,14 @@
         <div class="card-body">
             <h5 class="card-title">Utilisation par jour</h5>
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <input type="date" class="form-control" name="date" aria-label="date">
-                        <button type="button" class="btn btn-primary ms-4 text-nowrap">Voir résultats</button>
+                <div class="col-lg-3">
+                    <input type="date" id="date-input" class="form-control" name="date" aria-label="date">
+                    <div class="invalid-feedback">
+                        Vous devez entrer une date
                     </div>
+                </div>
+                <div class="col-lg-3">
+                    <button type="button" id="fetch-button" class="btn btn-primary ms-4 text-nowrap">Voir résultats</button>
                 </div>
             </div>
             <ul class="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabJustified" role="tablist">
@@ -23,43 +26,62 @@
             </ul>
             <div class="tab-content pt-4" id="borderedTabJustifiedContent">
                 <div class="tab-pane fade show active" id="bordered-justified-slot-A" role="tabpanel">
-                    <ol class="list-group list-group-numbered">
-                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                            <div class="ms-2 me-auto">
-                                <div class="fw-bold">Matricule de voiture</div>
-                                <span>8h - 17h</span>
-                            </div>
-                            <span class="badge bg-primary rounded-pill">Réparation</span>
-                        </li>
-                    </ol>
+                    <ol class="list-group list-group-numbered" id="slot-A-content"></ol>
                 </div>
-                <div class="tab-pane fade" id="bordered-justified-B" role="tabpanel">
-                    <div class="tab-pane fade show active" id="bordered-justified-slot-B" role="tabpanel">
-                        <ol class="list-group list-group-numbered">
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Matricule de voiture</div>
-                                    <span>8h - 17h</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">Réparation</span>
-                            </li>
-                        </ol>
-                    </div>
+                <div class="tab-pane fade" id="bordered-justified-slot-B" role="tabpanel">
+                    <ol class="list-group list-group-numbered" id="slot-B-content"></ol>
                 </div>
-                <div class="tab-pane fade" id="bordered-justified-C" role="tabpanel">
-                    <div class="tab-pane fade show active" id="bordered-justified-slot-C" role="tabpanel">
-                        <ol class="list-group list-group-numbered">
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Matricule de voiture</div>
-                                    <span>8h - 17h</span>
-                                </div>
-                                <span class="badge bg-primary rounded-pill">Réparation</span>
-                            </li>
-                        </ol>
-                    </div>
+                <div class="tab-pane fade" id="bordered-justified-slot-C" role="tabpanel">
+                    <ol class="list-group list-group-numbered" id="slot-C-content"></ol>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#fetch-button').click(function() {
+            const date = $('#date-input').val();
+            if (!date) {
+                $('#date-input').addClass('is-invalid');
+                return;
+            } else {
+                $('#date-input').removeClass('is-invalid');
+            }
+
+            $.ajax({
+                url: '<?= site_url('Back_office_slot/fetch_data'); ?>',
+                type: 'POST',
+                data: {date: date},
+                dataType: 'json',
+                success: function(response) {
+                    $('#slot-A-content').empty();
+                    $('#slot-B-content').empty();
+                    $('#slot-C-content').empty();
+
+                    // Parcourir les résultats et remplir les slots
+                    $.each(response, function(slot, appointments) {
+                        $.each(appointments, function(index, appointment) {
+                            var listItem = '<li class="list-group-item d-flex justify-content-between align-items-start">' +
+                                '<div class="ms-2 me-auto">' +
+                                '<div class="fw-bold">Matricule: ' + appointment.matricule_voiture + '</div>' +
+                                '<span>Date de début: ' + appointment.date_debut + '</span>' +
+                                '</div>' +
+                                '<span class="badge bg-primary rounded-pill">' + appointment.type_service + '</span>' +
+                                '</li>';
+
+                            if (slot === 'A') {
+                                $('#slot-A-content').append(listItem);
+                            } else if (slot === 'B') {
+                                $('#slot-B-content').append(listItem);
+                            } else if (slot === 'C') {
+                                $('#slot-C-content').append(listItem);
+                            }
+                        });
+                    });
+                }
+            });
+        });
+    });
+</script>

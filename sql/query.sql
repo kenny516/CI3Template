@@ -64,3 +64,21 @@ FROM garage_auto_details_rendez_vous gadrv
     garage_auto.garage_auto_service gas ON garv.id_service = gas.id_service
 WHERE gadrv.date_details = '2024-07-16'
 GROUP BY gadrv.date_details;
+
+/*
+ * Requête pour l'utilisation de slot
+ */
+-- Récupère les utilisations des slots
+SELECT ga_slot.designation AS slot,
+       gav.immatriculation AS matricule_voiture,
+       garv.date_debut,
+       ga_service.nom AS type_service,
+       ga_service.duree AS duree_service
+FROM garage_auto_rendez_vous garv
+        JOIN
+     garage_auto_slot ga_slot ON garv.id_slot = ga_slot.id_slot
+        JOIN
+     garage_auto_voiture gav ON garv.id_voiture = gav.id_voiture
+        JOIN
+     garage_auto_service ga_service ON garv.id_service = ga_service.id_service
+WHERE DATE(garv.date_debut) = '2024-07-16';
