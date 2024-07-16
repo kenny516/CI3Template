@@ -49,10 +49,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'pages/view';
+$route['default_controller'] = 'FrontOffice';
 
 $route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['translate_uri_dashes'] = TRUE;
 
 $route['BackOffice/services/form'] = 'Back_office_service/services_form/';
 $route['BackOffice/services/form/(:any)?'] = 'Back_office_service/services_form/$1';
@@ -72,6 +72,8 @@ $route['BackOffice/appointments/calendar'] = 'Back_office_rendez_vous/fetch_appo
 $route['BackOffice/quotation/list'] = 'Back_office_quotation/RendezVous_model_list';
 $route['BackOffice/slot'] = 'Back_office_slot';
 $route['BackOffice/dashboard'] = 'Back_office_dashboard';
+
+$route['BackOffice/reinitialize'] = 'BackOffice/reinitialize_database';
 
 
 /// Front office
