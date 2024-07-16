@@ -1,5 +1,5 @@
-# CREATE DATABASE garage_auto;
-# USE garage_auto;
+CREATE DATABASE garage_auto;
+USE garage_auto;
 
 CREATE TABLE garage_auto_admin
 (
