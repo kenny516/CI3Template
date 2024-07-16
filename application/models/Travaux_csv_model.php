@@ -15,7 +15,7 @@ class Travaux_csv_model extends CI_Model {
                 'heure_rdv' => $row[3],
                 'type_service' => $row[4],
                 'montant' => $row[5],  // Ensure montant is a float
-                'date_paiement' => empty($row[6]) ? null : date("Y-m-d", strtotime($row[6]))  // Convert date or set to null
+                'date_paiement' => $row[6]  // Convert date or set to null
             );
 
             $this->db->insert('garage_auto_import_travaux', $insert_data);

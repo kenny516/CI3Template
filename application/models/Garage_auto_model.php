@@ -23,6 +23,56 @@ class Garage_auto_model extends CI_Model {
         $this->db->query($query);
     }
 
+    public function insert_rendez_vous_from_import() {
+        $query = "
+        INSERT INTO garage_auto_rendez_vous (id_voiture, id_service, id_slot, date_debut, date_paiement)
+        SELECT
+            voit.id_voiture,
+            serv.id_service,
+            COALESCE((
+                SELECT slot.id_slot
+                FROM garage_auto_slot AS slot
+                    LEFT JOIN garage_auto_rendez_vous AS details_date
+                        ON slot.id_slot = details_date.id_slot
+                            AND (
+                                (
+                                    STR_TO_DATE(CONCAT(travaux.date_rdv, ' ', IFNULL(travaux.heure_rdv, '00:00:00')), '%d/%m/%Y %H:%i:%s')
+                                        BETWEEN details_date.date_debut
+                                            AND ADDTIME(details_date.date_debut,
+                                                        (SELECT duree
+                                                         FROM garage_auto_import_service
+                                                         WHERE service = CAST(details_date.id_service AS CHAR) LIMIT 1)
+                                            )
+                                )
+                                OR
+                                (
+                                    details_date.date_paiement IS NOT NULL
+                                    AND travaux.date_paiement <> ''
+                                    AND travaux.date_paiement BETWEEN STR_TO_DATE(travaux.date_paiement, '%d/%m/%Y')
+                                        AND ADDTIME(STR_TO_DATE(travaux.date_paiement, '%d/%m/%Y'), (SELECT duree
+                                                                                                    FROM garage_auto_import_service
+                                                                                                    WHERE service = CAST(details_date.id_service AS CHAR)
+                                                                                                    LIMIT 1)
+                                            )
+                                )
+                            )
+                WHERE details_date.id_slot IS NULL
+                LIMIT 1
+            ), NULL) AS id_slot,
+            STR_TO_DATE(CONCAT(travaux.date_rdv, ' ', IFNULL(travaux.heure_rdv, '00:00:00')), '%d/%m/%Y %H:%i:%s') AS date_debut,
+            CASE
+                WHEN travaux.date_paiement <> '' AND travaux.date_paiement IS NOT NULL
+                    THEN STR_TO_DATE(travaux.date_paiement, '%d/%m/%Y')
+                ELSE NULL
+            END AS date_paiement
+        FROM garage_auto_import_travaux travaux
+            INNER JOIN garage_auto_voiture voit ON travaux.voiture = voit.immatriculation
+            INNER JOIN garage_auto_service serv ON travaux.type_service = serv.nom
+        WHERE travaux.date_paiement IS NOT NULL AND travaux.date_paiement <> '';
+    ";
+        $this->db->query($query);
+    }
+
     public function insert_type_voitures_from_import() {
         $query = "
             INSERT INTO garage_auto_type_voiture (description)
