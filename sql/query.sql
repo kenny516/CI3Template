@@ -23,6 +23,7 @@ WHERE slot.id_slot NOT IN (
 /*
  * Requêtes pour le dashboard
  */
+-- Montant payé par date de référence
 SELECT SUM(gas.prix) AS montant_paye_par_date_reference
 FROM garage_auto_rendez_vous AS garv
         JOIN
@@ -31,9 +32,35 @@ WHERE garv.date_paiement IS NOT NULL       AND
       DATE(garv.date_debut) = '2024-07-16' AND
       garv.date_paiement >= DATE(garv.date_debut);
 
+-- Montant impayé par date de référence
 SELECT SUM(gas.prix) AS montant_impaye_par_date_reference
 FROM garage_auto_rendez_vous AS garv
          JOIN
      garage_auto_service gas ON garv.id_service = gas.id_service
-WHERE garv.date_paiement IS NULL         AND
+WHERE garv.date_paiement IS NULL AND
     DATE(garv.date_debut) = '2024-07-17';
+
+-- Chiffre d'affaire par type de voiture
+SELECT gatv.id_type_voiture,
+       gatv.description AS description_type_voiture,
+       SUM(gas.prix)    AS chiffre_affaire_par_type_voiture
+FROM garage_auto_rendez_vous garv
+        JOIN
+     garage_auto.garage_auto_voiture gav ON garv.id_voiture = gav.id_voiture
+        JOIN
+     garage_auto.garage_auto_type_voiture gatv ON gav.id_type_voiture = gatv.id_type_voiture
+        JOIN
+     garage_auto.garage_auto_service gas ON garv.id_service = gas.id_service
+WHERE garv.date_paiement IS NOT NULL
+GROUP BY gatv.id_type_voiture;
+
+-- Voitures traitées dans une date donnée
+SELECT COUNT(gadrv.id_details),
+       gadrv.date_details
+FROM garage_auto_details_rendez_vous gadrv
+        JOIN
+     garage_auto.garage_auto_rendez_vous garv ON gadrv.id_rendez_vous = garv.id_rendez_vous
+        JOIN
+    garage_auto.garage_auto_service gas ON garv.id_service = gas.id_service
+WHERE gadrv.date_details = ''
+GROUP BY gadrv.date_details;

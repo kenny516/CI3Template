@@ -74,11 +74,11 @@ CREATE TABLE garage_auto_details_rendez_vous
     FOREIGN KEY (id_rendez_vous) REFERENCES garage_auto_rendez_vous (id_rendez_vous)
 );
 
-
 CREATE TABLE garage_auto_import_service(
     service VARCHAR(255),
     duree VARCHAR(50)
 );
+
 CREATE TABLE garage_auto_import_travaux(
     voiture VARCHAR(50),
     type_voiture VARCHAR(50),
