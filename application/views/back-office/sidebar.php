@@ -36,10 +36,10 @@
             </a>
         </li>
         <li class="nav-item">
-            <button class="btn btn-danger " href="<?= site_url('BackOffice/'); ?>">
+            <a class="nav-link collapsed" href="<?= site_url('BackOffice/'); ?>">
                 <i class="ri-delete-bin-2-line"></i>
-                <span>SUPR DATA</span>
-            </button>
+                <span>Réinitialiser les données</span>
+            </a>
         </li>
     </ul>
 </aside>
