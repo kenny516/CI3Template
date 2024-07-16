@@ -73,3 +73,19 @@ CREATE TABLE garage_auto_details_rendez_vous
     id_rendez_vous INT  NOT NULL,
     FOREIGN KEY (id_rendez_vous) REFERENCES garage_auto_rendez_vous (id_rendez_vous)
 );
+
+
+CREATE TABLE garage_auto_import_service(
+    service VARCHAR(255),
+    duree VARCHAR(50)
+);
+CREATE TABLE garage_auto_import_travaux(
+    voiture VARCHAR(50),
+    type_voiture VARCHAR(50),
+    date_rdv VARCHAR(50),
+    heure_rdv VARCHAR(50),
+    type_service VARCHAR(50),
+    montant VARCHAR(50),
+    date_paiement VARCHAR(50)
+);
+
