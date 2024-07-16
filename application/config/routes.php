@@ -56,10 +56,23 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['BackOffice/services/form'] = 'Back_office_service/services_form/';
 $route['BackOffice/services/form/(:any)?'] = 'Back_office_service/services_form/$1';
-
-
 $route['BackOffice/services/list'] = 'Back_office_service/services_list';
 $route['BackOffice/services/save'] = 'Back_office_service/save';
 $route['BackOffice/services/delete/(:any)'] = 'Back_office_service/services_delete/$1';
+
+$route['BackOffice/quotation/list'] = 'Back_office_quotation/RendezVous_model_list';
+
+
+$route['BackOffice/login'] = 'Back_office_login/login';
+$route['BackOffice/login/verify'] = 'Back_office_login/verify_login';
+$route['BackOffice/logout'] = 'Back_office_login/logout';
+$route['BackOffice/login/add_admin'] = 'Back_office_login/add_admin';
+
+$route['BackOffice/appointments/calendar'] = 'Back_office_rendez_vous/fetch_appointments';
+$route['BackOffice/quotation/list'] = 'Back_office_quotation/RendezVous_model_list';
+
+
+/// Front office
+$route['FrontOffice/quotation/pdf'] = 'Front_office_devis/generate_service_receipt';
 
 

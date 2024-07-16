@@ -8,13 +8,13 @@ class BackOffice extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-      //  $this->load->model('Admin_model');
+        $this->load->model('Admin_model');
+        $this->load->model('RendezVous_model');
+        $this->load->model('Voiture_model');
         $this->load->helper('form');
-    }
-
-    public function login()
-    {
-        $this->load->view(self::VIEW_FOLDER . 'login');
+        if (!$this->session->userdata("user")['id_admin']){
+            redirect('BackOffice/login');
+        }
     }
 
     public function services_form()
@@ -28,6 +28,8 @@ class BackOffice extends CI_Controller
     {
         $data['content'] = self::VIEW_FOLDER . 'appointment';
         $data['title'] = 'Rendez-vous';
+        $data['voitures'] = $this->Voiture_model->get_all();
+        $data['services'] = $this->Service_model->get_all();
         $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
     }
 
@@ -37,37 +39,5 @@ class BackOffice extends CI_Controller
         $data['title'] = 'Devis';
         $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
     }
- 
-    public function add_admin()
-    {
-        $email = 'admin@gmail.com';
-        $password = 'admin123';
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $data = array(
-            'email' => $email,
-            'mots_de_passe' => $hashed_password
-        );
-        $this->Admin_model->insert($data);
-    }
 
-    public function verify_login()
-    {
-        if ($this->input->post('submit')) {
-            $email = $this->input->post('email');
-            $password = $this->input->post('password');
-
-            $admin = $this->Admin_model->login($email, $password);
-            if ($admin) {
-                $session_data = array(
-                    'email' => $email,
-                    'logged_in' => TRUE
-                );
-                $this->session->set_userdata("user",$session_data);
-                redirect('BackOffice/services/list');
-            } else {
-                $this->session->set_flashdata('error', 'Identifiant incorrect');
-                redirect('BackOffice/login');
-            }
-        }
-    }
 }
