@@ -36,6 +36,7 @@ class RendezVous_model extends CI_Model {
 
         return $rendez_vous_id;
     }
+
     public function get_all() {
         $this->db->select('garage_auto_rendez_vous.*, garage_auto_voiture.immatriculation, garage_auto_service.nom as service_nom, garage_auto_slot.designation as slot_designation');
         $this->db->from('garage_auto_rendez_vous');

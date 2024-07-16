@@ -2,38 +2,26 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Importation CSV</h5>
-                <?= form_open('BackOffice/services/save', ['method' => 'post']); ?>
-                <div class="row mb-3">
-                    <label for="nom" class="col-sm-2 col-form-label">Services</label>
-                    <div class="col-sm-10">
-                        <?= form_input([
-                            'name' => 'service',
-                            'id' => 'service',
-                            'class' => 'form-control',
-                            'type' => 'file',
-                            'value' => $nom ?? ''
-                        ]); ?>
-                        <?= form_error('service', '<div class="text-danger">', '</div>'); ?>
+                <br>
+                <form action="<?= site_url('Back_office_csv/process_import') ?>" method="post" enctype="multipart/form-data">
+                    <div class="row mb-3">
+                        <label for="service" class="col-sm-2 col-form-label">Services</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="service" id="service" class="form-control">
+                            <?= form_error('service', '<div class="text-danger">', '</div>'); ?>
+                        </div>
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="nom" class="col-sm-2 col-form-label">Travaux</label>
-                    <div class="col-sm-10">
-                        <?= form_input([
-                            'name' => 'travaux',
-                            'id' => 'travaux',
-                            'class' => 'form-control',
-                            'type' => 'file',
-                            'value' => $nom ?? ''
-                        ]); ?>
-                        <?= form_error('travaux', '<div class="text-danger">', '</div>'); ?>
+                    <div class="row mb-3">
+                        <label for="travaux" class="col-sm-2 col-form-label">Travaux</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="travaux" id="travaux" class="form-control">
+                            <?= form_error('travaux', '<div class="text-danger">', '</div>'); ?>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <?= form_submit('submit', 'Importer', ['class' => 'btn btn-primary px-4 fw-bold']); ?>
-                </div>
-                <?= form_close(); ?>
+                    <div>
+                        <button type="submit" class="btn btn-primary px-4 fw-bold">Importer</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

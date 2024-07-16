@@ -3,37 +3,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Back_office_csv extends CI_Controller {
 
+    const VIEW_FOLDER = 'back-office/';
+
     public function __construct() {
         parent::__construct();
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
+        $this->load->library('session');
     }
 
     public function index() {
-        $this->load->view('backoffice/import_csv_form');
+        $data['content'] = self::VIEW_FOLDER . 'ImportCSV';
+        $data['title'] = 'Import csv';
+        $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
     }
 
     public function process_import() {
-        $this->form_validation->set_rules('service', 'Service CSV', 'required');
-        $this->form_validation->set_rules('travaux', 'Travaux CSV', 'required');
+        $service_file = $_FILES['service']['tmp_name'] ?? null;
+        $travaux_file = $_FILES['travaux']['tmp_name'] ?? null;
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('backoffice/import_csv_form');
-        } else {
-            $service_file = $_FILES['service']['tmp_name'];
-            $travaux_file = $_FILES['travaux']['tmp_name'];
-
+        if ($service_file && $travaux_file) {
             $service_data = $this->parse_csv_file($service_file);
             $travaux_data = $this->parse_csv_file($travaux_file);
 
-            // Example: Insert data into database
-            $this->load->model('Service_model');
-            $this->Service_model->insert_services($service_data);
+            // Validate headers
+            if (!$this->validate_service_data($service_data) || !$this->validate_travaux_data($travaux_data)) {
+                $this->session->set_flashdata('error', 'Invalid CSV headers. Please check the file contents.');
+                $this->index();
+                return;
+            }
 
-            $this->load->model('Travaux_model');
-            $this->Travaux_model->insert_travaux($travaux_data);
+            // Remove headers
+            array_shift($service_data);
+            array_shift($travaux_data);
 
-            redirect('backoffice/importation_csv/success');
+            // Insert data into database
+            $this->load->model('Service_csv_model');
+            $this->Service_csv_model->insert_services($service_data);
+
+            $this->load->model('Travaux_csv_model');
+            $this->Travaux_csv_model->insert_travaux($travaux_data);
+            redirect('BackOffice/services/list');
+        } else {
+            $this->session->set_flashdata('error', 'Please select both files.');
+            $this->index();
         }
     }
 
@@ -50,8 +63,16 @@ class Back_office_csv extends CI_Controller {
         return $data;
     }
 
-    public function success() {
-        $this->load->view('backoffice/import_csv_success');
+    private function validate_service_data($data) {
+        // Expected header for services
+        $expected_header = ['service', 'duree'];
+        return !empty($data) && $data[0] === $expected_header;
     }
 
+    private function validate_travaux_data($data) {
+        // Expected header for travaux
+        $expected_header = ['voiture', 'type voiture', 'date rdv', 'heure rdv', 'type service', 'montant', 'date paiement'];
+        return !empty($data) && $data[0] === $expected_header;
+    }
 }
+
