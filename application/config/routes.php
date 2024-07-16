@@ -77,4 +77,6 @@ $route['BackOffice/reinitialize'] = 'BackOffice/reinitialize_database';
 /// Front office
 $route['FrontOffice/quotation/pdf'] = 'Front_office_devis/generate_service_receipt';
 
+$route['login'] = 'front-office/Login/index';
+
 

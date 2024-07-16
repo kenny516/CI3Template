@@ -53,6 +53,12 @@
                 </div>
                 <?= form_close(); ?>
             </div>
+            <div class="col-lg-4">
+                <div class="bg-secondary p-5 mb-5">
+                    <h2 class="text-primary mb-4">Exportation en PDF</h2>
+                    <button class="btn btn-block btn-primary py-3">Exporter</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
