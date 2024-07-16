@@ -43,8 +43,7 @@ class Back_office_csv extends CI_Controller {
 
             $this->load->model('Travaux_csv_model');
             $this->Travaux_csv_model->insert_travaux($travaux_data);
-
-            redirect('backoffice/importation_csv/success');
+            redirect('BackOffice/services/list');
         } else {
             $this->session->set_flashdata('error', 'Please select both files.');
             $this->index();
@@ -74,10 +73,6 @@ class Back_office_csv extends CI_Controller {
         // Expected header for travaux
         $expected_header = ['voiture', 'type voiture', 'date rdv', 'heure rdv', 'type service', 'montant', 'date paiement'];
         return !empty($data) && $data[0] === $expected_header;
-    }
-
-    public function success() {
-        redirect('BackOffice/services/list');
     }
 }
 
