@@ -13,6 +13,10 @@ class DetailsRendezVous_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function delete_all() {
+        return $this->db->delete('garage_auto_details_rendez_vous');
+    }
+
     public function get_details($data)
     {
         // Extract the service duration into a DateInterval instance
