@@ -55,7 +55,7 @@
                                     </div>
                                 <?php endif; ?>
 
-                                <?= form_open('backoffice/verify_login',
+                                <?= form_open('BackOffice/login/verify',
                                     array(
                                         'class' => 'row g-3',
                                         'method' => 'post'

@@ -25,6 +25,11 @@ class Voiture_model extends CI_Model {
         return $query->row_array();
     }
 
+    public function get_by_immatriculation($immatriculation) {
+        $query = $this->db->get_where('garage_auto_voiture', ['immatriculation' => $immatriculation]);
+        return $query->row_array();
+    }
+
     public function update($id, $data) {
         $this->db->where('id_voiture', $id);
         return $this->db->update('garage_auto_voiture', $data);
