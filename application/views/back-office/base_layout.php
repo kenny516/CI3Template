@@ -24,6 +24,8 @@
     <link href="<?= base_url('assets/vendor/simple-datatables/style.css') ?>" rel="stylesheet">
 
     <link href="<?= base_url('assets/css/backoffice-style.css') ?>" rel="stylesheet">
+
+    <script src="<?= base_url('assets/js/jQuery3.7.1.js') ?>"></script>
 </head>
 
 <body class="d-flex flex-column">

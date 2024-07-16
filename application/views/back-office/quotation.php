@@ -37,8 +37,6 @@
         </div>
     </div>
 </div>
-
-<script src="<?= base_url('assets/js/jQuery3.7.1.js') ?>"></script>
 <script>
     $(document).ready(function() {
         $('.datatable tbody tr').each(function() {
