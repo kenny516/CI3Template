@@ -2,10 +2,10 @@
     <div class="row justify-content-around pt-5">
         <div class="col-lg-3 col-md-6 mb-5">
             <h4 class="text-uppercase text-light mb-4">Get In Touch</h4>
-            <p class="mb-2"><i class="fa fa-map-marker-alt text-white mr-3"></i>123 Street, New York, USA</p>
-            <p class="mb-2"><i class="fa fa-phone-alt text-white mr-3"></i>+012 345 67890</p>
-            <p><i class="fa fa-envelope text-white mr-3"></i>info@example.com</p>
-            <h6 class="text-uppercase text-white py-2">Follow Us</h6>
+            <p class="mb-2"><i class="fa fa-map-marker-alt text-white mr-3"></i>Andoharanofotsy, Antananarivo, Madagascar</p>
+            <p class="mb-2"><i class="fa fa-phone-alt text-white mr-3"></i>+012 345 6789</p>
+            <p><i class="fa fa-envelope text-white mr-3"></i>madaauto@gmail.com</p>
+            <h6 class="text-uppercase text-white py-2">Suivez-nous sur les réseaux</h6>
             <div class="d-flex justify-content-start">
                 <a class="btn btn-lg btn-dark btn-lg-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
                 <a class="btn btn-lg btn-dark btn-lg-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
