@@ -17,13 +17,19 @@
                     <div class="mb-3">
                         <label for="voiture" class="form-label small">Voitures</label>
                         <select id="voiture" name="voiture" class="form-select">
-                            <option>Jean marc 12 chevaux</option>
+                            <option selected>Choisir une voiture...</option>
+                            <?php foreach ($voitures as $voiture): ?>
+                                <option value="<?= $voiture['id_voiture'] ?>"><?= $voiture['immatriculation'] ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="service" class="form-label small">Types de services</label>
                         <select id="service" name="service" class="form-select">
-                            <option>Service 1</option>
+                            <option selected>Choisir un service...</option>
+                            <?php foreach ($services as $service): ?>
+                                <option value="<?= $service['id_service'] ?>"><?= $service['nom_service'] ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -43,7 +49,7 @@
     const calendarElement = document.getElementById('calendar');
     const appointmentModalElement = document.getElementById('appointmentModal');
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         calendar = new FullCalendar.Calendar(calendarElement, {
             initialDate: '2023-01-12',
             initialView: 'dayGridMonth',
@@ -58,13 +64,22 @@
             editable: true,
             dayMaxEvents: true,
             dateClick: function(info) {
-                document.getElementById('date-debut').value = info.startStr;
+                // Create a new Date object from the clicked date string
+                const dateDebut = new Date(info.dateStr + 'T08:00:00'); // Append the default time 08:00:00
+
+                // Convert to local time zone
+                const localFormattedDate = dateDebut.toLocaleString('sv-SE', { hour12: false });
+
+                // Set the value of the date-debut input field
+                document.getElementById('date-debut').value = localFormattedDate;
+
+                // Show the appointment modal
                 const appointmentModal = new bootstrap.Modal(appointmentModalElement, {
                     keyboard: false
                 });
                 appointmentModal.show();
             },
-            dayCellDidMount: function(arg) {
+            dayCellDidMount: function (arg) {
                 arg.el.classList.add('fc-day');
             },
             events: '<?= base_url('BackOffice/appointments/calendar') ?>' // Load events from the server
@@ -74,7 +89,7 @@
     });
 
     // Handle form submission
-    document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+    document.getElementById('appointmentForm').addEventListener('submit', function (event) {
         event.preventDefault();
         const voiture = document.getElementById('voiture').value;
         const service = document.getElementById('service').value;

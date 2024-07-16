@@ -10,6 +10,7 @@ class BackOffice extends CI_Controller
         parent::__construct();
         $this->load->model('Admin_model');
         $this->load->model('RendezVous_model');
+        $this->load->model('Voiture_model');
         $this->load->helper('form');
     }
 
@@ -29,6 +30,8 @@ class BackOffice extends CI_Controller
     {
         $data['content'] = self::VIEW_FOLDER . 'appointment';
         $data['title'] = 'Rendez-vous';
+        $data['voitures'] = $this->Voiture_model->get_all();
+        $data['services'] = $this->Service_model->get_all();
         $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
     }
 
