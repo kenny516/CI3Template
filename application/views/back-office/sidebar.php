@@ -41,9 +41,15 @@
             </a>
         </li>
         <li class="nav-item">
+<<<<<<< Updated upstream
             <a class="nav-link collapsed" href="<?= site_url('BackOffice/slot'); ?>">
                 <i class="ri-car-fill"></i>
                 <span>Utilisation des slots</span>
+=======
+            <a class="nav-link collapsed text-success" href="<?= site_url('Back_office_csv'); ?>">
+                <i class="ri-pencil-line text-success"></i>
+                <span>Import csv</span>
+>>>>>>> Stashed changes
             </a>
         </li>
         <li class="nav-item">
