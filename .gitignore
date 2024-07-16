@@ -20,3 +20,4 @@ application/logs/*
 application/config/database.php
 .idea/
 .idea/workspace.xml
+assets/vendor/*
