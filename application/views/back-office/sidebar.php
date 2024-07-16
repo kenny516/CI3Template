@@ -23,6 +23,12 @@
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
+            <a class="nav-link collapsed" href="<?= site_url('BackOffice/dashboard'); ?>">
+                <i class="bi bi-grid"></i>
+                <span>Tableau de bord</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" href="<?= site_url('BackOffice/appointment'); ?>">
                 <i class="bi bi-calendar-week"></i>
                 <span>Rendez-vous</span>
