@@ -12,6 +12,9 @@ class BackOffice extends CI_Controller
         $this->load->model('RendezVous_model');
         $this->load->model('Voiture_model');
         $this->load->helper('form');
+        if (!$this->session->userdata("user")['id_admin']){
+            redirect('BackOffice/login');
+        }
     }
 
     public function login()

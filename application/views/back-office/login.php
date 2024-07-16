@@ -41,6 +41,19 @@
                                     <h5 class="card-title text-center pb-0 fs-4">Login du Back Office</h5>
                                     <p class="text-center small">Entrer vos identifiants pour vous connecter</p>
                                 </div>
+                                <?php
+                                $error_message = $this->session->flashdata('error');
+                                if (!empty($error_message)) : ?>
+                                    <div class="col-12">
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <i class="bi bi-exclamation-octagon me-1"></i>
+                                            <?= $error_message ?>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                    aria-label="Close"></button>
+                                        </div>
+
+                                    </div>
+                                <?php endif; ?>
 
                                 <?= form_open('backoffice/verify_login',
                                     array(
@@ -81,24 +94,7 @@
                                         'class' => 'btn btn-primary w-100 fw-bold p-2'
                                     )); ?>
                                 </div>
-                                <?php if (!empty($error_message)) : ?>
-                                <div class="col-12">
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <i class="bi bi-exclamation-octagon me-1"></i>
-                                        <?= $error_message ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                aria-label="Close"></button>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                            <i class="bi bi-exclamation-octagon me-1"></i>
-                                            Erreur
-                                        </div>
-                                    </div>
-                                    <?php endif; ?>
-
-                                    <?= form_close(); ?>
-                                </div>
+                                <?= form_close(); ?>
                             </div>
                         </div>
                     </div>
