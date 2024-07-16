@@ -36,8 +36,8 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="<?= site_url('BackOffice/'); ?>">
-                <i class="ri-delete-bin-2-line"></i>
+            <a class="nav-link collapsed text-danger" href="<?= site_url('BackOffice/reinitialize'); ?>">
+                <i class="ri-delete-bin-2-line text-danger"></i>
                 <span>Réinitialiser les données</span>
             </a>
         </li>

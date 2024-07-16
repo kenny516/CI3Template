@@ -10,6 +10,9 @@ class BackOffice extends CI_Controller
         parent::__construct();
         $this->load->model('Admin_model');
         $this->load->model('RendezVous_model');
+        $this->load->model('DetailsRendezVous_model');
+        $this->load->model('Service_model');
+        $this->load->model('Type_voiture_model');
         $this->load->model('Voiture_model');
         $this->load->helper('form');
         if (!$this->session->userdata("user")['id_admin']){
@@ -38,6 +41,16 @@ class BackOffice extends CI_Controller
         $data['content'] = self::VIEW_FOLDER . 'quotation';
         $data['title'] = 'Devis';
         $this->load->view(self::VIEW_FOLDER . 'base_layout', $data);
+    }
+
+    public function reinitialize_database()
+    {
+        $this->DetailsRendezVous_model->delete_all();
+        $this->RendezVous_model->delete_all();
+        $this->Service_model->delete_all();
+        $this->Voiture_model->delete_all();
+        $this->Type_voiture_model->delete_all();
+        redirect('BackOffice/services/list');
     }
 
 }
