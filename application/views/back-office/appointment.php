@@ -28,7 +28,7 @@
                         <select id="service" name="service" class="form-select">
                             <option selected>Choisir un service...</option>
                             <?php foreach ($services as $service): ?>
-                                <option value="<?= $service['id_service'] ?>"><?= $service['nom_service'] ?></option>
+                                <option value="<?= $service['id_service'] ?>"><?= $service['nom'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -63,12 +63,15 @@
             selectMirror: true,
             editable: true,
             dayMaxEvents: true,
-            dateClick: function(info) {
-                // Create a new Date object from the clicked date string
-                const dateDebut = new Date(info.dateStr + 'T08:00:00'); // Append the default time 08:00:00
+            dateClick: function (info) {
+                // Extract date part from info.dateStr and create a new Date object
+                const dateDebut = new Date(info.dateStr);
 
-                // Convert to local time zone
-                const localFormattedDate = dateDebut.toLocaleString('sv-SE', { hour12: false });
+                // Set the time to 08:00 AM
+                dateDebut.setHours(8, 0, 0, 0); // Hours, Minutes, Seconds, Milliseconds
+
+                // Convert the date to local time zone
+                const localFormattedDate = `${dateDebut.getFullYear()}-${String(dateDebut.getMonth() + 1).padStart(2, '0')}-${String(dateDebut.getDate()).padStart(2, '0')}T${String(dateDebut.getHours()).padStart(2, '0')}:${String(dateDebut.getMinutes()).padStart(2, '0')}`;
 
                 // Set the value of the date-debut input field
                 document.getElementById('date-debut').value = localFormattedDate;
